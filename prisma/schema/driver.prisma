@@ -3,7 +3,7 @@ model Driver {
   id String @id @default(uuid())
   name          String       @db.VarChar(255)
   phone         String       @db.VarChar(20)
-  licenseNumber Int          @default(autoincrement()) @map("license_number")
+  licenseNumber String       @default(uuid()) @unique
   status        DriverStatus @default(ACTIVE)
   createdAt     DateTime     @default(now()) @map("created_at")
   buses      Bus[]

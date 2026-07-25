@@ -20,25 +20,15 @@ export type DriverModel = runtime.Types.Result.DefaultSelection<Prisma.$DriverPa
 
 export type AggregateDriver = {
   _count: DriverCountAggregateOutputType | null
-  _avg: DriverAvgAggregateOutputType | null
-  _sum: DriverSumAggregateOutputType | null
   _min: DriverMinAggregateOutputType | null
   _max: DriverMaxAggregateOutputType | null
-}
-
-export type DriverAvgAggregateOutputType = {
-  licenseNumber: number | null
-}
-
-export type DriverSumAggregateOutputType = {
-  licenseNumber: number | null
 }
 
 export type DriverMinAggregateOutputType = {
   id: string | null
   name: string | null
   phone: string | null
-  licenseNumber: number | null
+  licenseNumber: string | null
   status: $Enums.DriverStatus | null
   createdAt: Date | null
 }
@@ -47,7 +37,7 @@ export type DriverMaxAggregateOutputType = {
   id: string | null
   name: string | null
   phone: string | null
-  licenseNumber: number | null
+  licenseNumber: string | null
   status: $Enums.DriverStatus | null
   createdAt: Date | null
 }
@@ -62,14 +52,6 @@ export type DriverCountAggregateOutputType = {
   _all: number
 }
 
-
-export type DriverAvgAggregateInputType = {
-  licenseNumber?: true
-}
-
-export type DriverSumAggregateInputType = {
-  licenseNumber?: true
-}
 
 export type DriverMinAggregateInputType = {
   id?: true
@@ -137,18 +119,6 @@ export type DriverAggregateArgs<ExtArgs extends runtime.Types.Extensions.Interna
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: DriverAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: DriverSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: DriverMinAggregateInputType
@@ -179,8 +149,6 @@ export type DriverGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   _count?: DriverCountAggregateInputType | true
-  _avg?: DriverAvgAggregateInputType
-  _sum?: DriverSumAggregateInputType
   _min?: DriverMinAggregateInputType
   _max?: DriverMaxAggregateInputType
 }
@@ -189,12 +157,10 @@ export type DriverGroupByOutputType = {
   id: string
   name: string
   phone: string
-  licenseNumber: number
+  licenseNumber: string
   status: $Enums.DriverStatus
   createdAt: Date
   _count: DriverCountAggregateOutputType | null
-  _avg: DriverAvgAggregateOutputType | null
-  _sum: DriverSumAggregateOutputType | null
   _min: DriverMinAggregateOutputType | null
   _max: DriverMaxAggregateOutputType | null
 }
@@ -221,7 +187,7 @@ export type DriverWhereInput = {
   id?: Prisma.StringFilter<"Driver"> | string
   name?: Prisma.StringFilter<"Driver"> | string
   phone?: Prisma.StringFilter<"Driver"> | string
-  licenseNumber?: Prisma.IntFilter<"Driver"> | number
+  licenseNumber?: Prisma.StringFilter<"Driver"> | string
   status?: Prisma.EnumDriverStatusFilter<"Driver"> | $Enums.DriverStatus
   createdAt?: Prisma.DateTimeFilter<"Driver"> | Date | string
   buses?: Prisma.BusListRelationFilter
@@ -239,16 +205,16 @@ export type DriverOrderByWithRelationInput = {
 
 export type DriverWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  licenseNumber?: string
   AND?: Prisma.DriverWhereInput | Prisma.DriverWhereInput[]
   OR?: Prisma.DriverWhereInput[]
   NOT?: Prisma.DriverWhereInput | Prisma.DriverWhereInput[]
   name?: Prisma.StringFilter<"Driver"> | string
   phone?: Prisma.StringFilter<"Driver"> | string
-  licenseNumber?: Prisma.IntFilter<"Driver"> | number
   status?: Prisma.EnumDriverStatusFilter<"Driver"> | $Enums.DriverStatus
   createdAt?: Prisma.DateTimeFilter<"Driver"> | Date | string
   buses?: Prisma.BusListRelationFilter
-}, "id">
+}, "id" | "licenseNumber">
 
 export type DriverOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -258,10 +224,8 @@ export type DriverOrderByWithAggregationInput = {
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.DriverCountOrderByAggregateInput
-  _avg?: Prisma.DriverAvgOrderByAggregateInput
   _max?: Prisma.DriverMaxOrderByAggregateInput
   _min?: Prisma.DriverMinOrderByAggregateInput
-  _sum?: Prisma.DriverSumOrderByAggregateInput
 }
 
 export type DriverScalarWhereWithAggregatesInput = {
@@ -271,7 +235,7 @@ export type DriverScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Driver"> | string
   name?: Prisma.StringWithAggregatesFilter<"Driver"> | string
   phone?: Prisma.StringWithAggregatesFilter<"Driver"> | string
-  licenseNumber?: Prisma.IntWithAggregatesFilter<"Driver"> | number
+  licenseNumber?: Prisma.StringWithAggregatesFilter<"Driver"> | string
   status?: Prisma.EnumDriverStatusWithAggregatesFilter<"Driver"> | $Enums.DriverStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Driver"> | Date | string
 }
@@ -280,7 +244,7 @@ export type DriverCreateInput = {
   id?: string
   name: string
   phone: string
-  licenseNumber?: number
+  licenseNumber?: string
   status?: $Enums.DriverStatus
   createdAt?: Date | string
   buses?: Prisma.BusCreateNestedManyWithoutDriverInput
@@ -290,7 +254,7 @@ export type DriverUncheckedCreateInput = {
   id?: string
   name: string
   phone: string
-  licenseNumber?: number
+  licenseNumber?: string
   status?: $Enums.DriverStatus
   createdAt?: Date | string
   buses?: Prisma.BusUncheckedCreateNestedManyWithoutDriverInput
@@ -300,7 +264,7 @@ export type DriverUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  licenseNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  licenseNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDriverStatusFieldUpdateOperationsInput | $Enums.DriverStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   buses?: Prisma.BusUpdateManyWithoutDriverNestedInput
@@ -310,7 +274,7 @@ export type DriverUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  licenseNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  licenseNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDriverStatusFieldUpdateOperationsInput | $Enums.DriverStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   buses?: Prisma.BusUncheckedUpdateManyWithoutDriverNestedInput
@@ -320,7 +284,7 @@ export type DriverCreateManyInput = {
   id?: string
   name: string
   phone: string
-  licenseNumber?: number
+  licenseNumber?: string
   status?: $Enums.DriverStatus
   createdAt?: Date | string
 }
@@ -329,7 +293,7 @@ export type DriverUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  licenseNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  licenseNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDriverStatusFieldUpdateOperationsInput | $Enums.DriverStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -338,7 +302,7 @@ export type DriverUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  licenseNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  licenseNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDriverStatusFieldUpdateOperationsInput | $Enums.DriverStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -355,10 +319,6 @@ export type DriverCountOrderByAggregateInput = {
   licenseNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-}
-
-export type DriverAvgOrderByAggregateInput = {
-  licenseNumber?: Prisma.SortOrder
 }
 
 export type DriverMaxOrderByAggregateInput = {
@@ -379,10 +339,6 @@ export type DriverMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
 }
 
-export type DriverSumOrderByAggregateInput = {
-  licenseNumber?: Prisma.SortOrder
-}
-
 export type DriverCreateNestedOneWithoutBusesInput = {
   create?: Prisma.XOR<Prisma.DriverCreateWithoutBusesInput, Prisma.DriverUncheckedCreateWithoutBusesInput>
   connectOrCreate?: Prisma.DriverCreateOrConnectWithoutBusesInput
@@ -399,14 +355,6 @@ export type DriverUpdateOneWithoutBusesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DriverUpdateToOneWithWhereWithoutBusesInput, Prisma.DriverUpdateWithoutBusesInput>, Prisma.DriverUncheckedUpdateWithoutBusesInput>
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type EnumDriverStatusFieldUpdateOperationsInput = {
   set?: $Enums.DriverStatus
 }
@@ -415,7 +363,7 @@ export type DriverCreateWithoutBusesInput = {
   id?: string
   name: string
   phone: string
-  licenseNumber?: number
+  licenseNumber?: string
   status?: $Enums.DriverStatus
   createdAt?: Date | string
 }
@@ -424,7 +372,7 @@ export type DriverUncheckedCreateWithoutBusesInput = {
   id?: string
   name: string
   phone: string
-  licenseNumber?: number
+  licenseNumber?: string
   status?: $Enums.DriverStatus
   createdAt?: Date | string
 }
@@ -449,7 +397,7 @@ export type DriverUpdateWithoutBusesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  licenseNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  licenseNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDriverStatusFieldUpdateOperationsInput | $Enums.DriverStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -458,7 +406,7 @@ export type DriverUncheckedUpdateWithoutBusesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  licenseNumber?: Prisma.IntFieldUpdateOperationsInput | number
+  licenseNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumDriverStatusFieldUpdateOperationsInput | $Enums.DriverStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -549,7 +497,7 @@ export type $DriverPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     id: string
     name: string
     phone: string
-    licenseNumber: number
+    licenseNumber: string
     status: $Enums.DriverStatus
     createdAt: Date
   }, ExtArgs["result"]["driver"]>
@@ -979,7 +927,7 @@ export interface DriverFieldRefs {
   readonly id: Prisma.FieldRef<"Driver", 'String'>
   readonly name: Prisma.FieldRef<"Driver", 'String'>
   readonly phone: Prisma.FieldRef<"Driver", 'String'>
-  readonly licenseNumber: Prisma.FieldRef<"Driver", 'Int'>
+  readonly licenseNumber: Prisma.FieldRef<"Driver", 'String'>
   readonly status: Prisma.FieldRef<"Driver", 'DriverStatus'>
   readonly createdAt: Prisma.FieldRef<"Driver", 'DateTime'>
 }

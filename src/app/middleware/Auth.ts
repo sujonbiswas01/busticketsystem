@@ -39,7 +39,7 @@ const auth = (roles: string[]) => {
               res.setHeader("X-Session-Expires-At", expiresAt.toISOString());
             }
 
-            if (user.status === "BLOCKED" || user.status === "INACTIVE") {
+            if (user.status === "BLOCKED") {
               throw new AppError(status.UNAUTHORIZED, "Unauthorized access! User is not active.");
             }
 
