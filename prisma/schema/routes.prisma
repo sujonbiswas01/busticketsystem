@@ -1,0 +1,11 @@
+model Route {
+   id String @id @default(uuid())
+  from_city  String
+  to_city    String
+  distance   String
+  base_price BigInt
+  created_at DateTime @default(now()) @map("created_at")
+  schedules  Schedule[]
+  buses        Bus[]
+  @@map("routes")
+}

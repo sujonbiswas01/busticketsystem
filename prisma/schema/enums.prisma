@@ -1,0 +1,50 @@
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+  BLOCKED
+}
+
+enum BusType {
+  AC
+  NON_AC
+  DELUXE
+}
+
+enum BusStatus {
+  ACTIVE
+  INACTIVE
+  MAINTENANCE
+}
+
+
+enum DriverStatus {
+  ACTIVE
+  INACTIVE
+  ON_LEAVE
+  SUSPENDED
+}
+
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}
+
+enum SeatStatus {
+  AVAILABLE
+  BOOKED
+  BLOCKED
+}
+
+enum PaymentStatus {
+  PAID
+  UNPAID
+  PENDING
+}

@@ -1,0 +1,12 @@
+model Seat {
+  id String @id @default(uuid())
+  bus_id      String
+  seat_number String
+  user_id     String
+  status      SeatStatus @default(AVAILABLE)
+  bus         Bus        @relation(fields: [bus_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  user        User?      @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+   booking  Booking?
+  @@map("seats")
+}
+

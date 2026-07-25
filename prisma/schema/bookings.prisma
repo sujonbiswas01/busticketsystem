@@ -1,0 +1,14 @@
+model Booking {
+    id String @id @default(uuid())
+    user_id        String
+    schedule_id    String
+    seat_id        String @unique
+    total_price    BigInt
+    booking_status BookingStatus @default(PENDING)
+    payment_status PaymentStatus @default(PENDING)
+    created_at     DateTime      @db.Date
+    user           User          @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    seat    Seat @relation(fields: [seat_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    payment Payment?
+    @@map("bookings")
+}

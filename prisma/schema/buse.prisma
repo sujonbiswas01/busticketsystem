@@ -1,0 +1,21 @@
+
+
+model Bus {
+  id String @id @default(uuid())
+  busName            String    @map("bus_name") @db.VarChar(255)
+  busNumber          String    @map("bus_number") @db.VarChar(100)
+  busType            BusType   @map("bus_type_")
+  totalSeats         BigInt    @map("total_seats")
+  registrationNumber String    @map("registration_number") @db.VarChar(100)
+  status             BusStatus @default(ACTIVE)
+  createdAt          DateTime  @default(now()) @map("created_at")
+  driverId           String?   @map("Driver_id")
+  driver           Driver?   @relation(fields: [driverId], references: [id])
+  seats            Seat[]
+  schedules        Schedule[]
+  routeId      String
+  route        Route @relation(fields: [routeId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  payment Payment?
+  
+  @@map("buses")
+}
