@@ -1,11 +1,46 @@
-import express, { type Request, type Response } from 'express';
-const app = express()
+import { Server } from "http";
+import app from "./app"
+import { envVars } from "./app/config/env";
+
+let server:Server
 const port = 5000
+const bootstrap = async() => {
+    try {
 
-app.get('/', (req:Request, res:Response) => {
-  res.send('Hello World!')
+        server = app.listen(envVars.PORT, () => {
+        });
+    } catch (error) {
+        console.error({ error }, "Failed to start server");
+    }   
+}
+
+process.on("uncaughtException",(error)=>{
+  console.error({ error }, "Uncaught exception detected, shutting down server");
+  if(server){
+    server.close(()=>{
+      process.exit(1)
+    })
+  }
+    process.exit(1)
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+process.on("unhandledRejection",(error)=>{
+  console.error({ error }, "Unhandled rejection detected, shutting down server");
+  if(server){
+    server.close(()=>{
+      process.exit(1)
+    })
+  }
 })
+
+
+process.on("SIGTERM",(error)=>{
+  console.warn({ error }, "SIGTERM detected, shutting down server");
+  if(server){
+    server.close(()=>{
+      process.exit(1)
+    })
+  }
+  process.exit(1)
+})
+bootstrap()
