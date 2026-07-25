@@ -507,10 +507,6 @@ export type EnumBusStatusFieldUpdateOperationsInput = {
   set?: $Enums.BusStatus
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type BusCreateNestedManyWithoutDriverInput = {
   create?: Prisma.XOR<Prisma.BusCreateWithoutDriverInput, Prisma.BusUncheckedCreateWithoutDriverInput> | Prisma.BusCreateWithoutDriverInput[] | Prisma.BusUncheckedCreateWithoutDriverInput[]
   connectOrCreate?: Prisma.BusCreateOrConnectWithoutDriverInput | Prisma.BusCreateOrConnectWithoutDriverInput[]

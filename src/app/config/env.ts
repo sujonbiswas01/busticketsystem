@@ -10,6 +10,8 @@ interface EnvConfig {
   FRONTEND_URL: string;
   BETTER_AUTH_SECRET:string;
   BETTER_AUTH_URL:string;
+  Email:string;
+  Password:string;
 }
 
 const loadEnvVariables = (): EnvConfig => {
@@ -18,7 +20,9 @@ const loadEnvVariables = (): EnvConfig => {
     "PORT",
     "FRONTEND_URL",
     "BETTER_AUTH_SECRET",
-    "BETTER_AUTH_URL"
+    "BETTER_AUTH_URL",
+    "Email",
+    "Password",
   ];
   requireEnvVariable.forEach((variable) => {
     if (!process.env[variable]) {
@@ -34,6 +38,8 @@ const loadEnvVariables = (): EnvConfig => {
         FRONTEND_URL: process.env.FRONTEND_URL as string,
     BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET as string,
     BETTER_AUTH_URL: process.env.BETTER_AUTH_URL as string,
+    Email: process.env.Email as string,
+    Password: process.env.Password as string,
   };
 };
 

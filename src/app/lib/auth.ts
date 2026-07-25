@@ -15,28 +15,20 @@ export const auth = betterAuth({
   appName: "Planora",
   user: {
     additionalFields: {
-   
-
+            role: {
+        type: "string",
+        required: true,
+        defaultValue: "USER",
+      },
       emailVerified: {
         type: "boolean",
         returned: true,
         defaultValue: true,
       },
-
-      isDeleted: {
-        type: "boolean",
-        required: true,
-        defaultValue: false,
-      },
       phone: {
         type: "string",
         required: false,
         defaultValue: "",
-      },
-      deletedAt: {
-        type: "date",
-        required: false,
-        defaultValue: null,
       },
     },
   },
