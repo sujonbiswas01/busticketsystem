@@ -3,7 +3,7 @@ model Route {
   from_city  String
   to_city    String
   distance   String
-  base_price BigInt
+  base_price Int
   created_at DateTime @default(now()) @map("created_at")
   schedules  Schedule[]
   buses        Bus[]

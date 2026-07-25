@@ -31,7 +31,7 @@ export type RouteAvgAggregateOutputType = {
 }
 
 export type RouteSumAggregateOutputType = {
-  base_price: bigint | null
+  base_price: number | null
 }
 
 export type RouteMinAggregateOutputType = {
@@ -39,7 +39,7 @@ export type RouteMinAggregateOutputType = {
   from_city: string | null
   to_city: string | null
   distance: string | null
-  base_price: bigint | null
+  base_price: number | null
   created_at: Date | null
 }
 
@@ -48,7 +48,7 @@ export type RouteMaxAggregateOutputType = {
   from_city: string | null
   to_city: string | null
   distance: string | null
-  base_price: bigint | null
+  base_price: number | null
   created_at: Date | null
 }
 
@@ -190,7 +190,7 @@ export type RouteGroupByOutputType = {
   from_city: string
   to_city: string
   distance: string
-  base_price: bigint
+  base_price: number
   created_at: Date
   _count: RouteCountAggregateOutputType | null
   _avg: RouteAvgAggregateOutputType | null
@@ -222,7 +222,7 @@ export type RouteWhereInput = {
   from_city?: Prisma.StringFilter<"Route"> | string
   to_city?: Prisma.StringFilter<"Route"> | string
   distance?: Prisma.StringFilter<"Route"> | string
-  base_price?: Prisma.BigIntFilter<"Route"> | bigint | number
+  base_price?: Prisma.IntFilter<"Route"> | number
   created_at?: Prisma.DateTimeFilter<"Route"> | Date | string
   schedules?: Prisma.ScheduleListRelationFilter
   buses?: Prisma.BusListRelationFilter
@@ -247,7 +247,7 @@ export type RouteWhereUniqueInput = Prisma.AtLeast<{
   from_city?: Prisma.StringFilter<"Route"> | string
   to_city?: Prisma.StringFilter<"Route"> | string
   distance?: Prisma.StringFilter<"Route"> | string
-  base_price?: Prisma.BigIntFilter<"Route"> | bigint | number
+  base_price?: Prisma.IntFilter<"Route"> | number
   created_at?: Prisma.DateTimeFilter<"Route"> | Date | string
   schedules?: Prisma.ScheduleListRelationFilter
   buses?: Prisma.BusListRelationFilter
@@ -275,7 +275,7 @@ export type RouteScalarWhereWithAggregatesInput = {
   from_city?: Prisma.StringWithAggregatesFilter<"Route"> | string
   to_city?: Prisma.StringWithAggregatesFilter<"Route"> | string
   distance?: Prisma.StringWithAggregatesFilter<"Route"> | string
-  base_price?: Prisma.BigIntWithAggregatesFilter<"Route"> | bigint | number
+  base_price?: Prisma.IntWithAggregatesFilter<"Route"> | number
   created_at?: Prisma.DateTimeWithAggregatesFilter<"Route"> | Date | string
 }
 
@@ -284,7 +284,7 @@ export type RouteCreateInput = {
   from_city: string
   to_city: string
   distance: string
-  base_price: bigint | number
+  base_price: number
   created_at?: Date | string
   schedules?: Prisma.ScheduleCreateNestedManyWithoutRouteInput
   buses?: Prisma.BusCreateNestedManyWithoutRouteInput
@@ -295,7 +295,7 @@ export type RouteUncheckedCreateInput = {
   from_city: string
   to_city: string
   distance: string
-  base_price: bigint | number
+  base_price: number
   created_at?: Date | string
   schedules?: Prisma.ScheduleUncheckedCreateNestedManyWithoutRouteInput
   buses?: Prisma.BusUncheckedCreateNestedManyWithoutRouteInput
@@ -306,7 +306,7 @@ export type RouteUpdateInput = {
   from_city?: Prisma.StringFieldUpdateOperationsInput | string
   to_city?: Prisma.StringFieldUpdateOperationsInput | string
   distance?: Prisma.StringFieldUpdateOperationsInput | string
-  base_price?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  base_price?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   schedules?: Prisma.ScheduleUpdateManyWithoutRouteNestedInput
   buses?: Prisma.BusUpdateManyWithoutRouteNestedInput
@@ -317,7 +317,7 @@ export type RouteUncheckedUpdateInput = {
   from_city?: Prisma.StringFieldUpdateOperationsInput | string
   to_city?: Prisma.StringFieldUpdateOperationsInput | string
   distance?: Prisma.StringFieldUpdateOperationsInput | string
-  base_price?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  base_price?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   schedules?: Prisma.ScheduleUncheckedUpdateManyWithoutRouteNestedInput
   buses?: Prisma.BusUncheckedUpdateManyWithoutRouteNestedInput
@@ -328,7 +328,7 @@ export type RouteCreateManyInput = {
   from_city: string
   to_city: string
   distance: string
-  base_price: bigint | number
+  base_price: number
   created_at?: Date | string
 }
 
@@ -337,7 +337,7 @@ export type RouteUpdateManyMutationInput = {
   from_city?: Prisma.StringFieldUpdateOperationsInput | string
   to_city?: Prisma.StringFieldUpdateOperationsInput | string
   distance?: Prisma.StringFieldUpdateOperationsInput | string
-  base_price?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  base_price?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -346,7 +346,7 @@ export type RouteUncheckedUpdateManyInput = {
   from_city?: Prisma.StringFieldUpdateOperationsInput | string
   to_city?: Prisma.StringFieldUpdateOperationsInput | string
   distance?: Prisma.StringFieldUpdateOperationsInput | string
-  base_price?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  base_price?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -404,6 +404,14 @@ export type RouteUpdateOneRequiredWithoutBusesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.RouteUpdateToOneWithWhereWithoutBusesInput, Prisma.RouteUpdateWithoutBusesInput>, Prisma.RouteUncheckedUpdateWithoutBusesInput>
 }
 
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type RouteCreateNestedOneWithoutSchedulesInput = {
   create?: Prisma.XOR<Prisma.RouteCreateWithoutSchedulesInput, Prisma.RouteUncheckedCreateWithoutSchedulesInput>
   connectOrCreate?: Prisma.RouteCreateOrConnectWithoutSchedulesInput
@@ -423,7 +431,7 @@ export type RouteCreateWithoutBusesInput = {
   from_city: string
   to_city: string
   distance: string
-  base_price: bigint | number
+  base_price: number
   created_at?: Date | string
   schedules?: Prisma.ScheduleCreateNestedManyWithoutRouteInput
 }
@@ -433,7 +441,7 @@ export type RouteUncheckedCreateWithoutBusesInput = {
   from_city: string
   to_city: string
   distance: string
-  base_price: bigint | number
+  base_price: number
   created_at?: Date | string
   schedules?: Prisma.ScheduleUncheckedCreateNestedManyWithoutRouteInput
 }
@@ -459,7 +467,7 @@ export type RouteUpdateWithoutBusesInput = {
   from_city?: Prisma.StringFieldUpdateOperationsInput | string
   to_city?: Prisma.StringFieldUpdateOperationsInput | string
   distance?: Prisma.StringFieldUpdateOperationsInput | string
-  base_price?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  base_price?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   schedules?: Prisma.ScheduleUpdateManyWithoutRouteNestedInput
 }
@@ -469,7 +477,7 @@ export type RouteUncheckedUpdateWithoutBusesInput = {
   from_city?: Prisma.StringFieldUpdateOperationsInput | string
   to_city?: Prisma.StringFieldUpdateOperationsInput | string
   distance?: Prisma.StringFieldUpdateOperationsInput | string
-  base_price?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  base_price?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   schedules?: Prisma.ScheduleUncheckedUpdateManyWithoutRouteNestedInput
 }
@@ -479,7 +487,7 @@ export type RouteCreateWithoutSchedulesInput = {
   from_city: string
   to_city: string
   distance: string
-  base_price: bigint | number
+  base_price: number
   created_at?: Date | string
   buses?: Prisma.BusCreateNestedManyWithoutRouteInput
 }
@@ -489,7 +497,7 @@ export type RouteUncheckedCreateWithoutSchedulesInput = {
   from_city: string
   to_city: string
   distance: string
-  base_price: bigint | number
+  base_price: number
   created_at?: Date | string
   buses?: Prisma.BusUncheckedCreateNestedManyWithoutRouteInput
 }
@@ -515,7 +523,7 @@ export type RouteUpdateWithoutSchedulesInput = {
   from_city?: Prisma.StringFieldUpdateOperationsInput | string
   to_city?: Prisma.StringFieldUpdateOperationsInput | string
   distance?: Prisma.StringFieldUpdateOperationsInput | string
-  base_price?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  base_price?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   buses?: Prisma.BusUpdateManyWithoutRouteNestedInput
 }
@@ -525,7 +533,7 @@ export type RouteUncheckedUpdateWithoutSchedulesInput = {
   from_city?: Prisma.StringFieldUpdateOperationsInput | string
   to_city?: Prisma.StringFieldUpdateOperationsInput | string
   distance?: Prisma.StringFieldUpdateOperationsInput | string
-  base_price?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  base_price?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   buses?: Prisma.BusUncheckedUpdateManyWithoutRouteNestedInput
 }
@@ -629,7 +637,7 @@ export type $RoutePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     from_city: string
     to_city: string
     distance: string
-    base_price: bigint
+    base_price: number
     created_at: Date
   }, ExtArgs["result"]["route"]>
   composites: {}
@@ -1060,7 +1068,7 @@ export interface RouteFieldRefs {
   readonly from_city: Prisma.FieldRef<"Route", 'String'>
   readonly to_city: Prisma.FieldRef<"Route", 'String'>
   readonly distance: Prisma.FieldRef<"Route", 'String'>
-  readonly base_price: Prisma.FieldRef<"Route", 'BigInt'>
+  readonly base_price: Prisma.FieldRef<"Route", 'Int'>
   readonly created_at: Prisma.FieldRef<"Route", 'DateTime'>
 }
     
