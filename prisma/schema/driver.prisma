@@ -6,8 +6,6 @@ model Driver {
   licenseNumber Int          @default(autoincrement()) @map("license_number")
   status        DriverStatus @default(ACTIVE)
   createdAt     DateTime     @default(now()) @map("created_at")
-
   buses      Bus[]
-
   @@map("drivers")
 }

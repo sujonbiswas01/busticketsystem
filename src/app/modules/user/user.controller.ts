@@ -4,6 +4,7 @@ import { Request, Response } from "express";
 import { catchAsync } from "../../shared/catchAsync";
 import { AuthService } from "./user.service";
 import { tokenUtils } from "../../utils/token";
+import AppError from "../../errorHelper/AppError";
 
 const UserRegister = catchAsync(async (req: Request, res: Response) => {
   const payload = {
@@ -43,7 +44,23 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+
+const getMe = catchAsync(async (req: Request, res: Response) => {
+  if (!req.user?.userId) {
+    throw new AppError(status.UNAUTHORIZED, "Unauthorized access. Please login first.");
+  }
+  const data = await AuthService.getMe(req.user);
+  sendResponse(res, {
+    httpStatusCode: status.OK,
+    success: true,
+    message: "User data retrieved successfully",
+    data: data,
+  });
+});
+
+
 export const userController={
     UserRegister,
-    loginUser
+    loginUser,
+    getMe
 }
