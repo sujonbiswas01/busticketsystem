@@ -1,8 +1,9 @@
+import status from "http-status";
 import AppError from "../../errorHelper/AppError";
 import { auth } from "../../lib/auth";
 import { prisma } from "../../lib/prisma";
 import { tokenUtils } from "../../utils/token";
-import { UserCreateInput } from "./user.interface";
+import { ILoginUser, UserCreateInput } from "./user.interface";
 const UserRegister = async (payload: UserCreateInput) => {
   const { name, email, phone,password } = payload;
   const userExist = await prisma.user.findUnique({
@@ -48,6 +49,49 @@ const UserRegister = async (payload: UserCreateInput) => {
   };
 };
 
+
+
+const loginUser = async (payload: ILoginUser) => {
+  const { email, password } = payload;
+
+  const data = await auth.api.signInEmail({
+    body: {
+      email,
+      password,
+    },
+  });
+
+   if (data.user.status === "BLOCKED") {
+    throw new AppError(status.FORBIDDEN, "User is blocked");
+  }
+
+  if (data.user.status ==="INACTIVE") {
+    throw new AppError(status.NOT_FOUND, "User is INACTIVE");
+  }
+
+  const accessToken = tokenUtils.getAccessToken({
+    userId: data.user.id,
+    role: data.user.role,
+    name: data.user.name,
+    email: data.user.email,
+    emailVerified: data.user.emailVerified,
+  });
+
+  const refreshToken = tokenUtils.getRefreshToken({
+    userId: data.user.id,
+    role: data.user.role,
+    name: data.user.name,
+    email: data.user.email,
+    emailVerified: data.user.emailVerified,
+  });
+  return {
+    ...data,
+    accessToken,
+    refreshToken,
+  };
+};
+
 export const AuthService = {
-  UserRegister
+  UserRegister,
+  loginUser,
 };

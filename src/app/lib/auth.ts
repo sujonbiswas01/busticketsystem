@@ -15,6 +15,11 @@ export const auth = betterAuth({
   appName: "Planora",
   user: {
     additionalFields: {
+         status: {
+        type: "string",
+        required: true,
+        defaultValue: "ACTIVE",
+      },
             role: {
         type: "string",
         required: true,
