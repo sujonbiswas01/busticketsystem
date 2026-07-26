@@ -15,7 +15,7 @@ model Bus {
   schedules        Schedule[]
   routeId      String
   route        Route @relation(fields: [routeId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  payment Payment?
+  payment Payment[]
   
   @@map("buses")
 }

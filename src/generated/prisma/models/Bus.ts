@@ -260,7 +260,7 @@ export type BusWhereInput = {
   seats?: Prisma.SeatListRelationFilter
   schedules?: Prisma.ScheduleListRelationFilter
   route?: Prisma.XOR<Prisma.RouteScalarRelationFilter, Prisma.RouteWhereInput>
-  payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
+  payment?: Prisma.PaymentListRelationFilter
 }
 
 export type BusOrderByWithRelationInput = {
@@ -278,7 +278,7 @@ export type BusOrderByWithRelationInput = {
   seats?: Prisma.SeatOrderByRelationAggregateInput
   schedules?: Prisma.ScheduleOrderByRelationAggregateInput
   route?: Prisma.RouteOrderByWithRelationInput
-  payment?: Prisma.PaymentOrderByWithRelationInput
+  payment?: Prisma.PaymentOrderByRelationAggregateInput
 }
 
 export type BusWhereUniqueInput = Prisma.AtLeast<{
@@ -299,7 +299,7 @@ export type BusWhereUniqueInput = Prisma.AtLeast<{
   seats?: Prisma.SeatListRelationFilter
   schedules?: Prisma.ScheduleListRelationFilter
   route?: Prisma.XOR<Prisma.RouteScalarRelationFilter, Prisma.RouteWhereInput>
-  payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
+  payment?: Prisma.PaymentListRelationFilter
 }, "id" | "registrationNumber">
 
 export type BusOrderByWithAggregationInput = {
@@ -349,7 +349,7 @@ export type BusCreateInput = {
   seats?: Prisma.SeatCreateNestedManyWithoutBusInput
   schedules?: Prisma.ScheduleCreateNestedManyWithoutBusInput
   route: Prisma.RouteCreateNestedOneWithoutBusesInput
-  payment?: Prisma.PaymentCreateNestedOneWithoutBusInput
+  payment?: Prisma.PaymentCreateNestedManyWithoutBusInput
 }
 
 export type BusUncheckedCreateInput = {
@@ -365,7 +365,7 @@ export type BusUncheckedCreateInput = {
   routeId: string
   seats?: Prisma.SeatUncheckedCreateNestedManyWithoutBusInput
   schedules?: Prisma.ScheduleUncheckedCreateNestedManyWithoutBusInput
-  payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutBusInput
+  payment?: Prisma.PaymentUncheckedCreateNestedManyWithoutBusInput
 }
 
 export type BusUpdateInput = {
@@ -381,7 +381,7 @@ export type BusUpdateInput = {
   seats?: Prisma.SeatUpdateManyWithoutBusNestedInput
   schedules?: Prisma.ScheduleUpdateManyWithoutBusNestedInput
   route?: Prisma.RouteUpdateOneRequiredWithoutBusesNestedInput
-  payment?: Prisma.PaymentUpdateOneWithoutBusNestedInput
+  payment?: Prisma.PaymentUpdateManyWithoutBusNestedInput
 }
 
 export type BusUncheckedUpdateInput = {
@@ -397,7 +397,7 @@ export type BusUncheckedUpdateInput = {
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
   seats?: Prisma.SeatUncheckedUpdateManyWithoutBusNestedInput
   schedules?: Prisma.ScheduleUncheckedUpdateManyWithoutBusNestedInput
-  payment?: Prisma.PaymentUncheckedUpdateOneWithoutBusNestedInput
+  payment?: Prisma.PaymentUncheckedUpdateManyWithoutBusNestedInput
 }
 
 export type BusCreateManyInput = {
@@ -645,7 +645,7 @@ export type BusCreateWithoutDriverInput = {
   seats?: Prisma.SeatCreateNestedManyWithoutBusInput
   schedules?: Prisma.ScheduleCreateNestedManyWithoutBusInput
   route: Prisma.RouteCreateNestedOneWithoutBusesInput
-  payment?: Prisma.PaymentCreateNestedOneWithoutBusInput
+  payment?: Prisma.PaymentCreateNestedManyWithoutBusInput
 }
 
 export type BusUncheckedCreateWithoutDriverInput = {
@@ -660,7 +660,7 @@ export type BusUncheckedCreateWithoutDriverInput = {
   routeId: string
   seats?: Prisma.SeatUncheckedCreateNestedManyWithoutBusInput
   schedules?: Prisma.ScheduleUncheckedCreateNestedManyWithoutBusInput
-  payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutBusInput
+  payment?: Prisma.PaymentUncheckedCreateNestedManyWithoutBusInput
 }
 
 export type BusCreateOrConnectWithoutDriverInput = {
@@ -793,7 +793,7 @@ export type BusCreateWithoutRouteInput = {
   driver?: Prisma.DriverCreateNestedOneWithoutBusesInput
   seats?: Prisma.SeatCreateNestedManyWithoutBusInput
   schedules?: Prisma.ScheduleCreateNestedManyWithoutBusInput
-  payment?: Prisma.PaymentCreateNestedOneWithoutBusInput
+  payment?: Prisma.PaymentCreateNestedManyWithoutBusInput
 }
 
 export type BusUncheckedCreateWithoutRouteInput = {
@@ -808,7 +808,7 @@ export type BusUncheckedCreateWithoutRouteInput = {
   licenseNumber?: string | null
   seats?: Prisma.SeatUncheckedCreateNestedManyWithoutBusInput
   schedules?: Prisma.ScheduleUncheckedCreateNestedManyWithoutBusInput
-  payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutBusInput
+  payment?: Prisma.PaymentUncheckedCreateNestedManyWithoutBusInput
 }
 
 export type BusCreateOrConnectWithoutRouteInput = {
@@ -849,7 +849,7 @@ export type BusCreateWithoutSeatsInput = {
   driver?: Prisma.DriverCreateNestedOneWithoutBusesInput
   schedules?: Prisma.ScheduleCreateNestedManyWithoutBusInput
   route: Prisma.RouteCreateNestedOneWithoutBusesInput
-  payment?: Prisma.PaymentCreateNestedOneWithoutBusInput
+  payment?: Prisma.PaymentCreateNestedManyWithoutBusInput
 }
 
 export type BusUncheckedCreateWithoutSeatsInput = {
@@ -864,7 +864,7 @@ export type BusUncheckedCreateWithoutSeatsInput = {
   licenseNumber?: string | null
   routeId: string
   schedules?: Prisma.ScheduleUncheckedCreateNestedManyWithoutBusInput
-  payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutBusInput
+  payment?: Prisma.PaymentUncheckedCreateNestedManyWithoutBusInput
 }
 
 export type BusCreateOrConnectWithoutSeatsInput = {
@@ -895,7 +895,7 @@ export type BusUpdateWithoutSeatsInput = {
   driver?: Prisma.DriverUpdateOneWithoutBusesNestedInput
   schedules?: Prisma.ScheduleUpdateManyWithoutBusNestedInput
   route?: Prisma.RouteUpdateOneRequiredWithoutBusesNestedInput
-  payment?: Prisma.PaymentUpdateOneWithoutBusNestedInput
+  payment?: Prisma.PaymentUpdateManyWithoutBusNestedInput
 }
 
 export type BusUncheckedUpdateWithoutSeatsInput = {
@@ -910,7 +910,7 @@ export type BusUncheckedUpdateWithoutSeatsInput = {
   licenseNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
   schedules?: Prisma.ScheduleUncheckedUpdateManyWithoutBusNestedInput
-  payment?: Prisma.PaymentUncheckedUpdateOneWithoutBusNestedInput
+  payment?: Prisma.PaymentUncheckedUpdateManyWithoutBusNestedInput
 }
 
 export type BusCreateWithoutSchedulesInput = {
@@ -925,7 +925,7 @@ export type BusCreateWithoutSchedulesInput = {
   driver?: Prisma.DriverCreateNestedOneWithoutBusesInput
   seats?: Prisma.SeatCreateNestedManyWithoutBusInput
   route: Prisma.RouteCreateNestedOneWithoutBusesInput
-  payment?: Prisma.PaymentCreateNestedOneWithoutBusInput
+  payment?: Prisma.PaymentCreateNestedManyWithoutBusInput
 }
 
 export type BusUncheckedCreateWithoutSchedulesInput = {
@@ -940,7 +940,7 @@ export type BusUncheckedCreateWithoutSchedulesInput = {
   licenseNumber?: string | null
   routeId: string
   seats?: Prisma.SeatUncheckedCreateNestedManyWithoutBusInput
-  payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutBusInput
+  payment?: Prisma.PaymentUncheckedCreateNestedManyWithoutBusInput
 }
 
 export type BusCreateOrConnectWithoutSchedulesInput = {
@@ -971,7 +971,7 @@ export type BusUpdateWithoutSchedulesInput = {
   driver?: Prisma.DriverUpdateOneWithoutBusesNestedInput
   seats?: Prisma.SeatUpdateManyWithoutBusNestedInput
   route?: Prisma.RouteUpdateOneRequiredWithoutBusesNestedInput
-  payment?: Prisma.PaymentUpdateOneWithoutBusNestedInput
+  payment?: Prisma.PaymentUpdateManyWithoutBusNestedInput
 }
 
 export type BusUncheckedUpdateWithoutSchedulesInput = {
@@ -986,7 +986,7 @@ export type BusUncheckedUpdateWithoutSchedulesInput = {
   licenseNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
   seats?: Prisma.SeatUncheckedUpdateManyWithoutBusNestedInput
-  payment?: Prisma.PaymentUncheckedUpdateOneWithoutBusNestedInput
+  payment?: Prisma.PaymentUncheckedUpdateManyWithoutBusNestedInput
 }
 
 export type BusCreateManyDriverInput = {
@@ -1013,7 +1013,7 @@ export type BusUpdateWithoutDriverInput = {
   seats?: Prisma.SeatUpdateManyWithoutBusNestedInput
   schedules?: Prisma.ScheduleUpdateManyWithoutBusNestedInput
   route?: Prisma.RouteUpdateOneRequiredWithoutBusesNestedInput
-  payment?: Prisma.PaymentUpdateOneWithoutBusNestedInput
+  payment?: Prisma.PaymentUpdateManyWithoutBusNestedInput
 }
 
 export type BusUncheckedUpdateWithoutDriverInput = {
@@ -1028,7 +1028,7 @@ export type BusUncheckedUpdateWithoutDriverInput = {
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
   seats?: Prisma.SeatUncheckedUpdateManyWithoutBusNestedInput
   schedules?: Prisma.ScheduleUncheckedUpdateManyWithoutBusNestedInput
-  payment?: Prisma.PaymentUncheckedUpdateOneWithoutBusNestedInput
+  payment?: Prisma.PaymentUncheckedUpdateManyWithoutBusNestedInput
 }
 
 export type BusUncheckedUpdateManyWithoutDriverInput = {
@@ -1067,7 +1067,7 @@ export type BusUpdateWithoutRouteInput = {
   driver?: Prisma.DriverUpdateOneWithoutBusesNestedInput
   seats?: Prisma.SeatUpdateManyWithoutBusNestedInput
   schedules?: Prisma.ScheduleUpdateManyWithoutBusNestedInput
-  payment?: Prisma.PaymentUpdateOneWithoutBusNestedInput
+  payment?: Prisma.PaymentUpdateManyWithoutBusNestedInput
 }
 
 export type BusUncheckedUpdateWithoutRouteInput = {
@@ -1082,7 +1082,7 @@ export type BusUncheckedUpdateWithoutRouteInput = {
   licenseNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seats?: Prisma.SeatUncheckedUpdateManyWithoutBusNestedInput
   schedules?: Prisma.ScheduleUncheckedUpdateManyWithoutBusNestedInput
-  payment?: Prisma.PaymentUncheckedUpdateOneWithoutBusNestedInput
+  payment?: Prisma.PaymentUncheckedUpdateManyWithoutBusNestedInput
 }
 
 export type BusUncheckedUpdateManyWithoutRouteInput = {
@@ -1105,11 +1105,13 @@ export type BusUncheckedUpdateManyWithoutRouteInput = {
 export type BusCountOutputType = {
   seats: number
   schedules: number
+  payment: number
 }
 
 export type BusCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   seats?: boolean | BusCountOutputTypeCountSeatsArgs
   schedules?: boolean | BusCountOutputTypeCountSchedulesArgs
+  payment?: boolean | BusCountOutputTypeCountPaymentArgs
 }
 
 /**
@@ -1134,6 +1136,13 @@ export type BusCountOutputTypeCountSeatsArgs<ExtArgs extends runtime.Types.Exten
  */
 export type BusCountOutputTypeCountSchedulesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.ScheduleWhereInput
+}
+
+/**
+ * BusCountOutputType without action
+ */
+export type BusCountOutputTypeCountPaymentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PaymentWhereInput
 }
 
 
@@ -1224,7 +1233,7 @@ export type $BusPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
     seats: Prisma.$SeatPayload<ExtArgs>[]
     schedules: Prisma.$SchedulePayload<ExtArgs>[]
     route: Prisma.$RoutePayload<ExtArgs>
-    payment: Prisma.$PaymentPayload<ExtArgs> | null
+    payment: Prisma.$PaymentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1635,7 +1644,7 @@ export interface Prisma__BusClient<T, Null = never, ExtArgs extends runtime.Type
   seats<T extends Prisma.Bus$seatsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Bus$seatsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SeatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   schedules<T extends Prisma.Bus$schedulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Bus$schedulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   route<T extends Prisma.RouteDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RouteDefaultArgs<ExtArgs>>): Prisma.Prisma__RouteClient<runtime.Types.Result.GetResult<Prisma.$RoutePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  payment<T extends Prisma.Bus$paymentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Bus$paymentArgs<ExtArgs>>): Prisma.Prisma__PaymentClient<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  payment<T extends Prisma.Bus$paymentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Bus$paymentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2159,6 +2168,11 @@ export type Bus$paymentArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    */
   include?: Prisma.PaymentInclude<ExtArgs> | null
   where?: Prisma.PaymentWhereInput
+  orderBy?: Prisma.PaymentOrderByWithRelationInput | Prisma.PaymentOrderByWithRelationInput[]
+  cursor?: Prisma.PaymentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
 }
 
 /**

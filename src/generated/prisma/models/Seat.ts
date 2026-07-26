@@ -184,7 +184,7 @@ export type SeatWhereInput = {
   status?: Prisma.EnumSeatStatusFilter<"Seat"> | $Enums.SeatStatus
   bus?: Prisma.XOR<Prisma.BusScalarRelationFilter, Prisma.BusWhereInput>
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  booking?: Prisma.XOR<Prisma.BookingNullableScalarRelationFilter, Prisma.BookingWhereInput> | null
+  Bookingseats?: Prisma.BookingseatListRelationFilter
 }
 
 export type SeatOrderByWithRelationInput = {
@@ -195,7 +195,7 @@ export type SeatOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   bus?: Prisma.BusOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
-  booking?: Prisma.BookingOrderByWithRelationInput
+  Bookingseats?: Prisma.BookingseatOrderByRelationAggregateInput
 }
 
 export type SeatWhereUniqueInput = Prisma.AtLeast<{
@@ -209,7 +209,7 @@ export type SeatWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.EnumSeatStatusFilter<"Seat"> | $Enums.SeatStatus
   bus?: Prisma.XOR<Prisma.BusScalarRelationFilter, Prisma.BusWhereInput>
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  booking?: Prisma.XOR<Prisma.BookingNullableScalarRelationFilter, Prisma.BookingWhereInput> | null
+  Bookingseats?: Prisma.BookingseatListRelationFilter
 }, "id" | "seat_number">
 
 export type SeatOrderByWithAggregationInput = {
@@ -240,7 +240,7 @@ export type SeatCreateInput = {
   status?: $Enums.SeatStatus
   bus: Prisma.BusCreateNestedOneWithoutSeatsInput
   user?: Prisma.UserCreateNestedOneWithoutSeatsInput
-  booking?: Prisma.BookingCreateNestedOneWithoutSeatInput
+  Bookingseats?: Prisma.BookingseatCreateNestedManyWithoutSeatInput
 }
 
 export type SeatUncheckedCreateInput = {
@@ -249,7 +249,7 @@ export type SeatUncheckedCreateInput = {
   seat_number: string
   user_id: string
   status?: $Enums.SeatStatus
-  booking?: Prisma.BookingUncheckedCreateNestedOneWithoutSeatInput
+  Bookingseats?: Prisma.BookingseatUncheckedCreateNestedManyWithoutSeatInput
 }
 
 export type SeatUpdateInput = {
@@ -258,7 +258,7 @@ export type SeatUpdateInput = {
   status?: Prisma.EnumSeatStatusFieldUpdateOperationsInput | $Enums.SeatStatus
   bus?: Prisma.BusUpdateOneRequiredWithoutSeatsNestedInput
   user?: Prisma.UserUpdateOneWithoutSeatsNestedInput
-  booking?: Prisma.BookingUpdateOneWithoutSeatNestedInput
+  Bookingseats?: Prisma.BookingseatUpdateManyWithoutSeatNestedInput
 }
 
 export type SeatUncheckedUpdateInput = {
@@ -267,7 +267,7 @@ export type SeatUncheckedUpdateInput = {
   seat_number?: Prisma.StringFieldUpdateOperationsInput | string
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeatStatusFieldUpdateOperationsInput | $Enums.SeatStatus
-  booking?: Prisma.BookingUncheckedUpdateOneWithoutSeatNestedInput
+  Bookingseats?: Prisma.BookingseatUncheckedUpdateManyWithoutSeatNestedInput
 }
 
 export type SeatCreateManyInput = {
@@ -373,18 +373,18 @@ export type SeatUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.SeatScalarWhereInput | Prisma.SeatScalarWhereInput[]
 }
 
-export type SeatCreateNestedOneWithoutBookingInput = {
-  create?: Prisma.XOR<Prisma.SeatCreateWithoutBookingInput, Prisma.SeatUncheckedCreateWithoutBookingInput>
-  connectOrCreate?: Prisma.SeatCreateOrConnectWithoutBookingInput
+export type SeatCreateNestedOneWithoutBookingseatsInput = {
+  create?: Prisma.XOR<Prisma.SeatCreateWithoutBookingseatsInput, Prisma.SeatUncheckedCreateWithoutBookingseatsInput>
+  connectOrCreate?: Prisma.SeatCreateOrConnectWithoutBookingseatsInput
   connect?: Prisma.SeatWhereUniqueInput
 }
 
-export type SeatUpdateOneRequiredWithoutBookingNestedInput = {
-  create?: Prisma.XOR<Prisma.SeatCreateWithoutBookingInput, Prisma.SeatUncheckedCreateWithoutBookingInput>
-  connectOrCreate?: Prisma.SeatCreateOrConnectWithoutBookingInput
-  upsert?: Prisma.SeatUpsertWithoutBookingInput
+export type SeatUpdateOneRequiredWithoutBookingseatsNestedInput = {
+  create?: Prisma.XOR<Prisma.SeatCreateWithoutBookingseatsInput, Prisma.SeatUncheckedCreateWithoutBookingseatsInput>
+  connectOrCreate?: Prisma.SeatCreateOrConnectWithoutBookingseatsInput
+  upsert?: Prisma.SeatUpsertWithoutBookingseatsInput
   connect?: Prisma.SeatWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.SeatUpdateToOneWithWhereWithoutBookingInput, Prisma.SeatUpdateWithoutBookingInput>, Prisma.SeatUncheckedUpdateWithoutBookingInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SeatUpdateToOneWithWhereWithoutBookingseatsInput, Prisma.SeatUpdateWithoutBookingseatsInput>, Prisma.SeatUncheckedUpdateWithoutBookingseatsInput>
 }
 
 export type SeatCreateNestedManyWithoutBusInput = {
@@ -438,7 +438,7 @@ export type SeatCreateWithoutUserInput = {
   seat_number: string
   status?: $Enums.SeatStatus
   bus: Prisma.BusCreateNestedOneWithoutSeatsInput
-  booking?: Prisma.BookingCreateNestedOneWithoutSeatInput
+  Bookingseats?: Prisma.BookingseatCreateNestedManyWithoutSeatInput
 }
 
 export type SeatUncheckedCreateWithoutUserInput = {
@@ -446,7 +446,7 @@ export type SeatUncheckedCreateWithoutUserInput = {
   registration_Number: string
   seat_number: string
   status?: $Enums.SeatStatus
-  booking?: Prisma.BookingUncheckedCreateNestedOneWithoutSeatInput
+  Bookingseats?: Prisma.BookingseatUncheckedCreateNestedManyWithoutSeatInput
 }
 
 export type SeatCreateOrConnectWithoutUserInput = {
@@ -486,7 +486,7 @@ export type SeatScalarWhereInput = {
   status?: Prisma.EnumSeatStatusFilter<"Seat"> | $Enums.SeatStatus
 }
 
-export type SeatCreateWithoutBookingInput = {
+export type SeatCreateWithoutBookingseatsInput = {
   id?: string
   seat_number: string
   status?: $Enums.SeatStatus
@@ -494,7 +494,7 @@ export type SeatCreateWithoutBookingInput = {
   user?: Prisma.UserCreateNestedOneWithoutSeatsInput
 }
 
-export type SeatUncheckedCreateWithoutBookingInput = {
+export type SeatUncheckedCreateWithoutBookingseatsInput = {
   id?: string
   registration_Number: string
   seat_number: string
@@ -502,23 +502,23 @@ export type SeatUncheckedCreateWithoutBookingInput = {
   status?: $Enums.SeatStatus
 }
 
-export type SeatCreateOrConnectWithoutBookingInput = {
+export type SeatCreateOrConnectWithoutBookingseatsInput = {
   where: Prisma.SeatWhereUniqueInput
-  create: Prisma.XOR<Prisma.SeatCreateWithoutBookingInput, Prisma.SeatUncheckedCreateWithoutBookingInput>
+  create: Prisma.XOR<Prisma.SeatCreateWithoutBookingseatsInput, Prisma.SeatUncheckedCreateWithoutBookingseatsInput>
 }
 
-export type SeatUpsertWithoutBookingInput = {
-  update: Prisma.XOR<Prisma.SeatUpdateWithoutBookingInput, Prisma.SeatUncheckedUpdateWithoutBookingInput>
-  create: Prisma.XOR<Prisma.SeatCreateWithoutBookingInput, Prisma.SeatUncheckedCreateWithoutBookingInput>
+export type SeatUpsertWithoutBookingseatsInput = {
+  update: Prisma.XOR<Prisma.SeatUpdateWithoutBookingseatsInput, Prisma.SeatUncheckedUpdateWithoutBookingseatsInput>
+  create: Prisma.XOR<Prisma.SeatCreateWithoutBookingseatsInput, Prisma.SeatUncheckedCreateWithoutBookingseatsInput>
   where?: Prisma.SeatWhereInput
 }
 
-export type SeatUpdateToOneWithWhereWithoutBookingInput = {
+export type SeatUpdateToOneWithWhereWithoutBookingseatsInput = {
   where?: Prisma.SeatWhereInput
-  data: Prisma.XOR<Prisma.SeatUpdateWithoutBookingInput, Prisma.SeatUncheckedUpdateWithoutBookingInput>
+  data: Prisma.XOR<Prisma.SeatUpdateWithoutBookingseatsInput, Prisma.SeatUncheckedUpdateWithoutBookingseatsInput>
 }
 
-export type SeatUpdateWithoutBookingInput = {
+export type SeatUpdateWithoutBookingseatsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   seat_number?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeatStatusFieldUpdateOperationsInput | $Enums.SeatStatus
@@ -526,7 +526,7 @@ export type SeatUpdateWithoutBookingInput = {
   user?: Prisma.UserUpdateOneWithoutSeatsNestedInput
 }
 
-export type SeatUncheckedUpdateWithoutBookingInput = {
+export type SeatUncheckedUpdateWithoutBookingseatsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   registration_Number?: Prisma.StringFieldUpdateOperationsInput | string
   seat_number?: Prisma.StringFieldUpdateOperationsInput | string
@@ -539,7 +539,7 @@ export type SeatCreateWithoutBusInput = {
   seat_number: string
   status?: $Enums.SeatStatus
   user?: Prisma.UserCreateNestedOneWithoutSeatsInput
-  booking?: Prisma.BookingCreateNestedOneWithoutSeatInput
+  Bookingseats?: Prisma.BookingseatCreateNestedManyWithoutSeatInput
 }
 
 export type SeatUncheckedCreateWithoutBusInput = {
@@ -547,7 +547,7 @@ export type SeatUncheckedCreateWithoutBusInput = {
   seat_number: string
   user_id: string
   status?: $Enums.SeatStatus
-  booking?: Prisma.BookingUncheckedCreateNestedOneWithoutSeatInput
+  Bookingseats?: Prisma.BookingseatUncheckedCreateNestedManyWithoutSeatInput
 }
 
 export type SeatCreateOrConnectWithoutBusInput = {
@@ -588,7 +588,7 @@ export type SeatUpdateWithoutUserInput = {
   seat_number?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeatStatusFieldUpdateOperationsInput | $Enums.SeatStatus
   bus?: Prisma.BusUpdateOneRequiredWithoutSeatsNestedInput
-  booking?: Prisma.BookingUpdateOneWithoutSeatNestedInput
+  Bookingseats?: Prisma.BookingseatUpdateManyWithoutSeatNestedInput
 }
 
 export type SeatUncheckedUpdateWithoutUserInput = {
@@ -596,7 +596,7 @@ export type SeatUncheckedUpdateWithoutUserInput = {
   registration_Number?: Prisma.StringFieldUpdateOperationsInput | string
   seat_number?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeatStatusFieldUpdateOperationsInput | $Enums.SeatStatus
-  booking?: Prisma.BookingUncheckedUpdateOneWithoutSeatNestedInput
+  Bookingseats?: Prisma.BookingseatUncheckedUpdateManyWithoutSeatNestedInput
 }
 
 export type SeatUncheckedUpdateManyWithoutUserInput = {
@@ -618,7 +618,7 @@ export type SeatUpdateWithoutBusInput = {
   seat_number?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeatStatusFieldUpdateOperationsInput | $Enums.SeatStatus
   user?: Prisma.UserUpdateOneWithoutSeatsNestedInput
-  booking?: Prisma.BookingUpdateOneWithoutSeatNestedInput
+  Bookingseats?: Prisma.BookingseatUpdateManyWithoutSeatNestedInput
 }
 
 export type SeatUncheckedUpdateWithoutBusInput = {
@@ -626,7 +626,7 @@ export type SeatUncheckedUpdateWithoutBusInput = {
   seat_number?: Prisma.StringFieldUpdateOperationsInput | string
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumSeatStatusFieldUpdateOperationsInput | $Enums.SeatStatus
-  booking?: Prisma.BookingUncheckedUpdateOneWithoutSeatNestedInput
+  Bookingseats?: Prisma.BookingseatUncheckedUpdateManyWithoutSeatNestedInput
 }
 
 export type SeatUncheckedUpdateManyWithoutBusInput = {
@@ -637,6 +637,35 @@ export type SeatUncheckedUpdateManyWithoutBusInput = {
 }
 
 
+/**
+ * Count Type SeatCountOutputType
+ */
+
+export type SeatCountOutputType = {
+  Bookingseats: number
+}
+
+export type SeatCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  Bookingseats?: boolean | SeatCountOutputTypeCountBookingseatsArgs
+}
+
+/**
+ * SeatCountOutputType without action
+ */
+export type SeatCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SeatCountOutputType
+   */
+  select?: Prisma.SeatCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * SeatCountOutputType without action
+ */
+export type SeatCountOutputTypeCountBookingseatsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BookingseatWhereInput
+}
+
 
 export type SeatSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -646,7 +675,8 @@ export type SeatSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   status?: boolean
   bus?: boolean | Prisma.BusDefaultArgs<ExtArgs>
   user?: boolean | Prisma.Seat$userArgs<ExtArgs>
-  booking?: boolean | Prisma.Seat$bookingArgs<ExtArgs>
+  Bookingseats?: boolean | Prisma.Seat$BookingseatsArgs<ExtArgs>
+  _count?: boolean | Prisma.SeatCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["seat"]>
 
 export type SeatSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -681,7 +711,8 @@ export type SeatOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = run
 export type SeatInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bus?: boolean | Prisma.BusDefaultArgs<ExtArgs>
   user?: boolean | Prisma.Seat$userArgs<ExtArgs>
-  booking?: boolean | Prisma.Seat$bookingArgs<ExtArgs>
+  Bookingseats?: boolean | Prisma.Seat$BookingseatsArgs<ExtArgs>
+  _count?: boolean | Prisma.SeatCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SeatIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bus?: boolean | Prisma.BusDefaultArgs<ExtArgs>
@@ -697,7 +728,7 @@ export type $SeatPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     bus: Prisma.$BusPayload<ExtArgs>
     user: Prisma.$UserPayload<ExtArgs> | null
-    booking: Prisma.$BookingPayload<ExtArgs> | null
+    Bookingseats: Prisma.$BookingseatPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1101,7 +1132,7 @@ export interface Prisma__SeatClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   bus<T extends Prisma.BusDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BusDefaultArgs<ExtArgs>>): Prisma.Prisma__BusClient<runtime.Types.Result.GetResult<Prisma.$BusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   user<T extends Prisma.Seat$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Seat$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  booking<T extends Prisma.Seat$bookingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Seat$bookingArgs<ExtArgs>>): Prisma.Prisma__BookingClient<runtime.Types.Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  Bookingseats<T extends Prisma.Seat$BookingseatsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Seat$BookingseatsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookingseatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1556,22 +1587,27 @@ export type Seat$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 }
 
 /**
- * Seat.booking
+ * Seat.Bookingseats
  */
-export type Seat$bookingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Seat$BookingseatsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Booking
+   * Select specific fields to fetch from the Bookingseat
    */
-  select?: Prisma.BookingSelect<ExtArgs> | null
+  select?: Prisma.BookingseatSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Booking
+   * Omit specific fields from the Bookingseat
    */
-  omit?: Prisma.BookingOmit<ExtArgs> | null
+  omit?: Prisma.BookingseatOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.BookingInclude<ExtArgs> | null
-  where?: Prisma.BookingWhereInput
+  include?: Prisma.BookingseatInclude<ExtArgs> | null
+  where?: Prisma.BookingseatWhereInput
+  orderBy?: Prisma.BookingseatOrderByWithRelationInput | Prisma.BookingseatOrderByWithRelationInput[]
+  cursor?: Prisma.BookingseatWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BookingseatScalarFieldEnum | Prisma.BookingseatScalarFieldEnum[]
 }
 
 /**

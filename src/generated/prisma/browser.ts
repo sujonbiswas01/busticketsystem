@@ -43,6 +43,11 @@ export type Verification = Prisma.VerificationModel
  */
 export type Booking = Prisma.BookingModel
 /**
+ * Model Bookingseat
+ * 
+ */
+export type Bookingseat = Prisma.BookingseatModel
+/**
  * Model Bus
  * 
  */

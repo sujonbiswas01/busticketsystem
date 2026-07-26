@@ -16,13 +16,13 @@ app.use('/api/auth',toNodeHandler(auth))
 app.set("view engine", "ejs");
 app.set("views",path.resolve(process.cwd(), `src/app/templates`) )
 app.use(express.urlencoded({ extended: true }));
-
+app.post("/webhook", express.raw({ type: "application/json" }),PaymentController.handleStripeWebhookEvent);
 app.use(express.json());
 app.get("/", (req: Request, res: Response) => {
     res.status(200).json({success:true,message:"Bus management backend system is running successfully"})
 });
 
-app.post("/webhook", express.raw({ type: "application/json" }),PaymentController.handleStripeWebhookEvent);
+
 
 app.use(cookieParser());
 app.use(cors({

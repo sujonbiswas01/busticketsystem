@@ -6,7 +6,7 @@ model Seat {
   status      SeatStatus @default(AVAILABLE)
   bus         Bus        @relation(fields: [registration_Number], references: [registrationNumber], onDelete: Cascade, onUpdate: Cascade)
   user        User?      @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-   booking  Booking?
+   Bookingseats  Bookingseat[]
   @@map("seats")
 }
 

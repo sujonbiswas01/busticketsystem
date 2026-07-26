@@ -12,8 +12,13 @@ const createBooking = catchAsync(async (req: Request, res: Response) => {
         .status(status.UNAUTHORIZED)
         .json({ success: false, message: "you are unauthorized" });
     }
-  const {bus_id} = req.params
-  const result = await BookingService.createBooking(user, bus_id as string);
+  const {bus_id} = req.params;
+  const { seatNumber, scheduletime } = req.body;
+  console.log(bus_id,seatNumber,scheduletime,"ids")
+  if (!bus_id || !seatNumber || !scheduletime) {
+    throw new AppError(status.BAD_REQUEST, "Missing required parameters");
+  }
+  const result = await BookingService.createBooking(user, bus_id as string, seatNumber, scheduletime);
   sendResponse(res, {
     httpStatusCode: status.CREATED,
     success: true,

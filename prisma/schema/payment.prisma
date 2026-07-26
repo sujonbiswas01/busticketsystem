@@ -9,7 +9,7 @@ model Payment {
   stripeEventId String? @unique
   transactionId String? @unique @db.Uuid()
   paymentGatewayData Json?
-  bus_id  String @unique
+  bus_id  String 
 
   user  User  @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 

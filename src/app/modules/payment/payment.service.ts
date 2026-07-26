@@ -44,6 +44,8 @@ const handlerStripeWebhookEvent = async (event: Stripe.Event) => {
       const bookingId = session.metadata?.bookingId;
       const paymentId = session.metadata?.paymentId;
 
+      console.log(bookingId,paymentId,session,"se")
+
       if (!bookingId || !paymentId) {
         console.error("Missing bookingId or paymentId in session metadata");
         return {
@@ -61,18 +63,13 @@ const handlerStripeWebhookEvent = async (event: Stripe.Event) => {
         return { message: `Booking with id ${bookingId} not found` };
       }
 
-      if (session.payment_status !== "paid") {
-        await deleteParticipantAndPayment(bookingId, paymentId);
-        break;
-      }
-
-      await prisma.$transaction(async (tx) => {
+       await prisma.$transaction(async (tx) => {
         await tx.booking.update({
           where: {
             id: bookingId,
           },
           data: {
-            paymentStatus: PaymentStatus.PAID,
+            payment_status: PaymentStatus.PAID,
           },
         });
 
@@ -82,11 +79,19 @@ const handlerStripeWebhookEvent = async (event: Stripe.Event) => {
           },
           data: {
             stripeEventId: event.id,
-            status: PaymentStatus.PAID,
+            payment_status: PaymentStatus.PAID,
             paymentGatewayData: session as any,
           },
         });
       });
+      
+
+      if (session.payment_status !== "paid") {
+        await deleteParticipantAndPayment(bookingId, paymentId);
+        break;
+      }
+
+     
 
       console.log(
         `Processed checkout.session.completed for booking ${bookingId} and payment ${paymentId}`,

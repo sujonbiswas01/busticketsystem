@@ -287,7 +287,6 @@ export type PaymentWhereUniqueInput = Prisma.AtLeast<{
   booking_id?: string
   stripeEventId?: string
   transactionId?: string
-  bus_id?: string
   AND?: Prisma.PaymentWhereInput | Prisma.PaymentWhereInput[]
   OR?: Prisma.PaymentWhereInput[]
   NOT?: Prisma.PaymentWhereInput | Prisma.PaymentWhereInput[]
@@ -297,10 +296,11 @@ export type PaymentWhereUniqueInput = Prisma.AtLeast<{
   created_at?: Prisma.DateTimeFilter<"Payment"> | Date | string
   user_id?: Prisma.StringFilter<"Payment"> | string
   paymentGatewayData?: Prisma.JsonNullableFilter<"Payment">
+  bus_id?: Prisma.StringFilter<"Payment"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   booking?: Prisma.XOR<Prisma.BookingScalarRelationFilter, Prisma.BookingWhereInput>
   bus?: Prisma.XOR<Prisma.BusScalarRelationFilter, Prisma.BusWhereInput>
-}, "id" | "booking_id" | "stripeEventId" | "transactionId" | "bus_id">
+}, "id" | "booking_id" | "stripeEventId" | "transactionId">
 
 export type PaymentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -570,36 +570,46 @@ export type PaymentUncheckedUpdateOneWithoutBookingNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PaymentUpdateToOneWithWhereWithoutBookingInput, Prisma.PaymentUpdateWithoutBookingInput>, Prisma.PaymentUncheckedUpdateWithoutBookingInput>
 }
 
-export type PaymentCreateNestedOneWithoutBusInput = {
-  create?: Prisma.XOR<Prisma.PaymentCreateWithoutBusInput, Prisma.PaymentUncheckedCreateWithoutBusInput>
-  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutBusInput
-  connect?: Prisma.PaymentWhereUniqueInput
+export type PaymentCreateNestedManyWithoutBusInput = {
+  create?: Prisma.XOR<Prisma.PaymentCreateWithoutBusInput, Prisma.PaymentUncheckedCreateWithoutBusInput> | Prisma.PaymentCreateWithoutBusInput[] | Prisma.PaymentUncheckedCreateWithoutBusInput[]
+  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutBusInput | Prisma.PaymentCreateOrConnectWithoutBusInput[]
+  createMany?: Prisma.PaymentCreateManyBusInputEnvelope
+  connect?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
 }
 
-export type PaymentUncheckedCreateNestedOneWithoutBusInput = {
-  create?: Prisma.XOR<Prisma.PaymentCreateWithoutBusInput, Prisma.PaymentUncheckedCreateWithoutBusInput>
-  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutBusInput
-  connect?: Prisma.PaymentWhereUniqueInput
+export type PaymentUncheckedCreateNestedManyWithoutBusInput = {
+  create?: Prisma.XOR<Prisma.PaymentCreateWithoutBusInput, Prisma.PaymentUncheckedCreateWithoutBusInput> | Prisma.PaymentCreateWithoutBusInput[] | Prisma.PaymentUncheckedCreateWithoutBusInput[]
+  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutBusInput | Prisma.PaymentCreateOrConnectWithoutBusInput[]
+  createMany?: Prisma.PaymentCreateManyBusInputEnvelope
+  connect?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
 }
 
-export type PaymentUpdateOneWithoutBusNestedInput = {
-  create?: Prisma.XOR<Prisma.PaymentCreateWithoutBusInput, Prisma.PaymentUncheckedCreateWithoutBusInput>
-  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutBusInput
-  upsert?: Prisma.PaymentUpsertWithoutBusInput
-  disconnect?: Prisma.PaymentWhereInput | boolean
-  delete?: Prisma.PaymentWhereInput | boolean
-  connect?: Prisma.PaymentWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PaymentUpdateToOneWithWhereWithoutBusInput, Prisma.PaymentUpdateWithoutBusInput>, Prisma.PaymentUncheckedUpdateWithoutBusInput>
+export type PaymentUpdateManyWithoutBusNestedInput = {
+  create?: Prisma.XOR<Prisma.PaymentCreateWithoutBusInput, Prisma.PaymentUncheckedCreateWithoutBusInput> | Prisma.PaymentCreateWithoutBusInput[] | Prisma.PaymentUncheckedCreateWithoutBusInput[]
+  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutBusInput | Prisma.PaymentCreateOrConnectWithoutBusInput[]
+  upsert?: Prisma.PaymentUpsertWithWhereUniqueWithoutBusInput | Prisma.PaymentUpsertWithWhereUniqueWithoutBusInput[]
+  createMany?: Prisma.PaymentCreateManyBusInputEnvelope
+  set?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
+  disconnect?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
+  delete?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
+  connect?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
+  update?: Prisma.PaymentUpdateWithWhereUniqueWithoutBusInput | Prisma.PaymentUpdateWithWhereUniqueWithoutBusInput[]
+  updateMany?: Prisma.PaymentUpdateManyWithWhereWithoutBusInput | Prisma.PaymentUpdateManyWithWhereWithoutBusInput[]
+  deleteMany?: Prisma.PaymentScalarWhereInput | Prisma.PaymentScalarWhereInput[]
 }
 
-export type PaymentUncheckedUpdateOneWithoutBusNestedInput = {
-  create?: Prisma.XOR<Prisma.PaymentCreateWithoutBusInput, Prisma.PaymentUncheckedCreateWithoutBusInput>
-  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutBusInput
-  upsert?: Prisma.PaymentUpsertWithoutBusInput
-  disconnect?: Prisma.PaymentWhereInput | boolean
-  delete?: Prisma.PaymentWhereInput | boolean
-  connect?: Prisma.PaymentWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PaymentUpdateToOneWithWhereWithoutBusInput, Prisma.PaymentUpdateWithoutBusInput>, Prisma.PaymentUncheckedUpdateWithoutBusInput>
+export type PaymentUncheckedUpdateManyWithoutBusNestedInput = {
+  create?: Prisma.XOR<Prisma.PaymentCreateWithoutBusInput, Prisma.PaymentUncheckedCreateWithoutBusInput> | Prisma.PaymentCreateWithoutBusInput[] | Prisma.PaymentUncheckedCreateWithoutBusInput[]
+  connectOrCreate?: Prisma.PaymentCreateOrConnectWithoutBusInput | Prisma.PaymentCreateOrConnectWithoutBusInput[]
+  upsert?: Prisma.PaymentUpsertWithWhereUniqueWithoutBusInput | Prisma.PaymentUpsertWithWhereUniqueWithoutBusInput[]
+  createMany?: Prisma.PaymentCreateManyBusInputEnvelope
+  set?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
+  disconnect?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
+  delete?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
+  connect?: Prisma.PaymentWhereUniqueInput | Prisma.PaymentWhereUniqueInput[]
+  update?: Prisma.PaymentUpdateWithWhereUniqueWithoutBusInput | Prisma.PaymentUpdateWithWhereUniqueWithoutBusInput[]
+  updateMany?: Prisma.PaymentUpdateManyWithWhereWithoutBusInput | Prisma.PaymentUpdateManyWithWhereWithoutBusInput[]
+  deleteMany?: Prisma.PaymentScalarWhereInput | Prisma.PaymentScalarWhereInput[]
 }
 
 export type PaymentCreateWithoutUserInput = {
@@ -770,41 +780,25 @@ export type PaymentCreateOrConnectWithoutBusInput = {
   create: Prisma.XOR<Prisma.PaymentCreateWithoutBusInput, Prisma.PaymentUncheckedCreateWithoutBusInput>
 }
 
-export type PaymentUpsertWithoutBusInput = {
-  update: Prisma.XOR<Prisma.PaymentUpdateWithoutBusInput, Prisma.PaymentUncheckedUpdateWithoutBusInput>
-  create: Prisma.XOR<Prisma.PaymentCreateWithoutBusInput, Prisma.PaymentUncheckedCreateWithoutBusInput>
-  where?: Prisma.PaymentWhereInput
+export type PaymentCreateManyBusInputEnvelope = {
+  data: Prisma.PaymentCreateManyBusInput | Prisma.PaymentCreateManyBusInput[]
+  skipDuplicates?: boolean
 }
 
-export type PaymentUpdateToOneWithWhereWithoutBusInput = {
-  where?: Prisma.PaymentWhereInput
+export type PaymentUpsertWithWhereUniqueWithoutBusInput = {
+  where: Prisma.PaymentWhereUniqueInput
+  update: Prisma.XOR<Prisma.PaymentUpdateWithoutBusInput, Prisma.PaymentUncheckedUpdateWithoutBusInput>
+  create: Prisma.XOR<Prisma.PaymentCreateWithoutBusInput, Prisma.PaymentUncheckedCreateWithoutBusInput>
+}
+
+export type PaymentUpdateWithWhereUniqueWithoutBusInput = {
+  where: Prisma.PaymentWhereUniqueInput
   data: Prisma.XOR<Prisma.PaymentUpdateWithoutBusInput, Prisma.PaymentUncheckedUpdateWithoutBusInput>
 }
 
-export type PaymentUpdateWithoutBusInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  transaction_id?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.IntFieldUpdateOperationsInput | number
-  payment_status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  stripeEventId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  transactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
-  user?: Prisma.UserUpdateOneRequiredWithoutPaymentsNestedInput
-  booking?: Prisma.BookingUpdateOneRequiredWithoutPaymentNestedInput
-}
-
-export type PaymentUncheckedUpdateWithoutBusInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  booking_id?: Prisma.StringFieldUpdateOperationsInput | string
-  transaction_id?: Prisma.StringFieldUpdateOperationsInput | string
-  amount?: Prisma.IntFieldUpdateOperationsInput | number
-  payment_status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  stripeEventId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  transactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+export type PaymentUpdateManyWithWhereWithoutBusInput = {
+  where: Prisma.PaymentScalarWhereInput
+  data: Prisma.XOR<Prisma.PaymentUpdateManyMutationInput, Prisma.PaymentUncheckedUpdateManyWithoutBusInput>
 }
 
 export type PaymentCreateManyUserInput = {
@@ -857,6 +851,58 @@ export type PaymentUncheckedUpdateManyWithoutUserInput = {
   transactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   bus_id?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type PaymentCreateManyBusInput = {
+  id?: string
+  booking_id: string
+  transaction_id: string
+  amount: number
+  payment_status?: $Enums.PaymentStatus
+  created_at?: Date | string
+  user_id: string
+  stripeEventId?: string | null
+  transactionId?: string | null
+  paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+}
+
+export type PaymentUpdateWithoutBusInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  transaction_id?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.IntFieldUpdateOperationsInput | number
+  payment_status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stripeEventId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  transactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  user?: Prisma.UserUpdateOneRequiredWithoutPaymentsNestedInput
+  booking?: Prisma.BookingUpdateOneRequiredWithoutPaymentNestedInput
+}
+
+export type PaymentUncheckedUpdateWithoutBusInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  booking_id?: Prisma.StringFieldUpdateOperationsInput | string
+  transaction_id?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.IntFieldUpdateOperationsInput | number
+  payment_status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  stripeEventId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  transactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+}
+
+export type PaymentUncheckedUpdateManyWithoutBusInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  booking_id?: Prisma.StringFieldUpdateOperationsInput | string
+  transaction_id?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.IntFieldUpdateOperationsInput | number
+  payment_status?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  stripeEventId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  transactionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentGatewayData?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
 }
 
 
