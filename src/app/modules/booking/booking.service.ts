@@ -12,11 +12,8 @@ const createBooking = async (user: IRequestUser, bus_id: string) => {
   if (!userExist) {
     throw new AppError(status.NOT_FOUND, "User not found");
   }
-
-  const busExist = await prisma.bus.findUnique({ where: { id: bus_id },
-
-
   
+  const busExist = await prisma.bus.findUnique({ where: { id: bus_id },
   include: {
       driver: true,
       route: true,
