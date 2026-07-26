@@ -7,7 +7,7 @@ model Bus {
   busType            BusType   @map("bus_type_")
   totalSeats         Int    @map("total_seats")
   registrationNumber String    @map("registration_number") @unique @db.VarChar(100)
-  status             BusStatus @default(ACTIVE)
+  status             BusStatus @default(INACTIVE)
   createdAt          DateTime  @default(now()) @map("created_at")
   licenseNumber           String?   @map("licenseNumber")
   driver           Driver?   @relation(fields: [licenseNumber], references: [licenseNumber], onDelete: Cascade, onUpdate: Cascade)

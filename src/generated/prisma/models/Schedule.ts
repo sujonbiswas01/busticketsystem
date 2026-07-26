@@ -29,7 +29,7 @@ export type ScheduleMinAggregateOutputType = {
   bus_id: string | null
   route_id: string | null
   date: Date | null
-  times: Date | null
+  time: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -39,7 +39,7 @@ export type ScheduleMaxAggregateOutputType = {
   bus_id: string | null
   route_id: string | null
   date: Date | null
-  times: Date | null
+  time: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -49,7 +49,7 @@ export type ScheduleCountAggregateOutputType = {
   bus_id: number
   route_id: number
   date: number
-  times: number
+  time: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -61,7 +61,7 @@ export type ScheduleMinAggregateInputType = {
   bus_id?: true
   route_id?: true
   date?: true
-  times?: true
+  time?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -71,7 +71,7 @@ export type ScheduleMaxAggregateInputType = {
   bus_id?: true
   route_id?: true
   date?: true
-  times?: true
+  time?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -81,7 +81,7 @@ export type ScheduleCountAggregateInputType = {
   bus_id?: true
   route_id?: true
   date?: true
-  times?: true
+  time?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -164,7 +164,7 @@ export type ScheduleGroupByOutputType = {
   bus_id: string
   route_id: string
   date: Date
-  times: Date
+  time: string
   createdAt: Date
   updatedAt: Date
   _count: ScheduleCountAggregateOutputType | null
@@ -195,7 +195,7 @@ export type ScheduleWhereInput = {
   bus_id?: Prisma.StringFilter<"Schedule"> | string
   route_id?: Prisma.StringFilter<"Schedule"> | string
   date?: Prisma.DateTimeFilter<"Schedule"> | Date | string
-  times?: Prisma.DateTimeFilter<"Schedule"> | Date | string
+  time?: Prisma.StringFilter<"Schedule"> | string
   createdAt?: Prisma.DateTimeFilter<"Schedule"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Schedule"> | Date | string
   bus?: Prisma.XOR<Prisma.BusScalarRelationFilter, Prisma.BusWhereInput>
@@ -207,7 +207,7 @@ export type ScheduleOrderByWithRelationInput = {
   bus_id?: Prisma.SortOrder
   route_id?: Prisma.SortOrder
   date?: Prisma.SortOrder
-  times?: Prisma.SortOrder
+  time?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   bus?: Prisma.BusOrderByWithRelationInput
@@ -222,7 +222,7 @@ export type ScheduleWhereUniqueInput = Prisma.AtLeast<{
   bus_id?: Prisma.StringFilter<"Schedule"> | string
   route_id?: Prisma.StringFilter<"Schedule"> | string
   date?: Prisma.DateTimeFilter<"Schedule"> | Date | string
-  times?: Prisma.DateTimeFilter<"Schedule"> | Date | string
+  time?: Prisma.StringFilter<"Schedule"> | string
   createdAt?: Prisma.DateTimeFilter<"Schedule"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Schedule"> | Date | string
   bus?: Prisma.XOR<Prisma.BusScalarRelationFilter, Prisma.BusWhereInput>
@@ -234,7 +234,7 @@ export type ScheduleOrderByWithAggregationInput = {
   bus_id?: Prisma.SortOrder
   route_id?: Prisma.SortOrder
   date?: Prisma.SortOrder
-  times?: Prisma.SortOrder
+  time?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ScheduleCountOrderByAggregateInput
@@ -250,7 +250,7 @@ export type ScheduleScalarWhereWithAggregatesInput = {
   bus_id?: Prisma.StringWithAggregatesFilter<"Schedule"> | string
   route_id?: Prisma.StringWithAggregatesFilter<"Schedule"> | string
   date?: Prisma.DateTimeWithAggregatesFilter<"Schedule"> | Date | string
-  times?: Prisma.DateTimeWithAggregatesFilter<"Schedule"> | Date | string
+  time?: Prisma.StringWithAggregatesFilter<"Schedule"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Schedule"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Schedule"> | Date | string
 }
@@ -258,8 +258,8 @@ export type ScheduleScalarWhereWithAggregatesInput = {
 export type ScheduleCreateInput = {
   id?: string
   date: Date | string
-  times: Date | string
-  createdAt: Date | string
+  time: string
+  createdAt?: Date | string
   updatedAt?: Date | string
   bus: Prisma.BusCreateNestedOneWithoutSchedulesInput
   route: Prisma.RouteCreateNestedOneWithoutSchedulesInput
@@ -270,15 +270,15 @@ export type ScheduleUncheckedCreateInput = {
   bus_id: string
   route_id: string
   date: Date | string
-  times: Date | string
-  createdAt: Date | string
+  time: string
+  createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type ScheduleUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  times?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  time?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bus?: Prisma.BusUpdateOneRequiredWithoutSchedulesNestedInput
@@ -290,7 +290,7 @@ export type ScheduleUncheckedUpdateInput = {
   bus_id?: Prisma.StringFieldUpdateOperationsInput | string
   route_id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  times?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  time?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -300,15 +300,15 @@ export type ScheduleCreateManyInput = {
   bus_id: string
   route_id: string
   date: Date | string
-  times: Date | string
-  createdAt: Date | string
+  time: string
+  createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type ScheduleUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  times?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  time?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -318,7 +318,7 @@ export type ScheduleUncheckedUpdateManyInput = {
   bus_id?: Prisma.StringFieldUpdateOperationsInput | string
   route_id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  times?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  time?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -338,7 +338,7 @@ export type ScheduleCountOrderByAggregateInput = {
   bus_id?: Prisma.SortOrder
   route_id?: Prisma.SortOrder
   date?: Prisma.SortOrder
-  times?: Prisma.SortOrder
+  time?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -348,7 +348,7 @@ export type ScheduleMaxOrderByAggregateInput = {
   bus_id?: Prisma.SortOrder
   route_id?: Prisma.SortOrder
   date?: Prisma.SortOrder
-  times?: Prisma.SortOrder
+  time?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -358,7 +358,7 @@ export type ScheduleMinOrderByAggregateInput = {
   bus_id?: Prisma.SortOrder
   route_id?: Prisma.SortOrder
   date?: Prisma.SortOrder
-  times?: Prisma.SortOrder
+  time?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -450,8 +450,8 @@ export type ScheduleUncheckedUpdateManyWithoutRouteNestedInput = {
 export type ScheduleCreateWithoutBusInput = {
   id?: string
   date: Date | string
-  times: Date | string
-  createdAt: Date | string
+  time: string
+  createdAt?: Date | string
   updatedAt?: Date | string
   route: Prisma.RouteCreateNestedOneWithoutSchedulesInput
 }
@@ -460,8 +460,8 @@ export type ScheduleUncheckedCreateWithoutBusInput = {
   id?: string
   route_id: string
   date: Date | string
-  times: Date | string
-  createdAt: Date | string
+  time: string
+  createdAt?: Date | string
   updatedAt?: Date | string
 }
 
@@ -499,7 +499,7 @@ export type ScheduleScalarWhereInput = {
   bus_id?: Prisma.StringFilter<"Schedule"> | string
   route_id?: Prisma.StringFilter<"Schedule"> | string
   date?: Prisma.DateTimeFilter<"Schedule"> | Date | string
-  times?: Prisma.DateTimeFilter<"Schedule"> | Date | string
+  time?: Prisma.StringFilter<"Schedule"> | string
   createdAt?: Prisma.DateTimeFilter<"Schedule"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Schedule"> | Date | string
 }
@@ -507,8 +507,8 @@ export type ScheduleScalarWhereInput = {
 export type ScheduleCreateWithoutRouteInput = {
   id?: string
   date: Date | string
-  times: Date | string
-  createdAt: Date | string
+  time: string
+  createdAt?: Date | string
   updatedAt?: Date | string
   bus: Prisma.BusCreateNestedOneWithoutSchedulesInput
 }
@@ -517,8 +517,8 @@ export type ScheduleUncheckedCreateWithoutRouteInput = {
   id?: string
   bus_id: string
   date: Date | string
-  times: Date | string
-  createdAt: Date | string
+  time: string
+  createdAt?: Date | string
   updatedAt?: Date | string
 }
 
@@ -552,15 +552,15 @@ export type ScheduleCreateManyBusInput = {
   id?: string
   route_id: string
   date: Date | string
-  times: Date | string
-  createdAt: Date | string
+  time: string
+  createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type ScheduleUpdateWithoutBusInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  times?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  time?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   route?: Prisma.RouteUpdateOneRequiredWithoutSchedulesNestedInput
@@ -570,7 +570,7 @@ export type ScheduleUncheckedUpdateWithoutBusInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   route_id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  times?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  time?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -579,7 +579,7 @@ export type ScheduleUncheckedUpdateManyWithoutBusInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   route_id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  times?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  time?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -588,15 +588,15 @@ export type ScheduleCreateManyRouteInput = {
   id?: string
   bus_id: string
   date: Date | string
-  times: Date | string
-  createdAt: Date | string
+  time: string
+  createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type ScheduleUpdateWithoutRouteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  times?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  time?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bus?: Prisma.BusUpdateOneRequiredWithoutSchedulesNestedInput
@@ -606,7 +606,7 @@ export type ScheduleUncheckedUpdateWithoutRouteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bus_id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  times?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  time?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -615,7 +615,7 @@ export type ScheduleUncheckedUpdateManyWithoutRouteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   bus_id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  times?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  time?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -627,7 +627,7 @@ export type ScheduleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   bus_id?: boolean
   route_id?: boolean
   date?: boolean
-  times?: boolean
+  time?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   bus?: boolean | Prisma.BusDefaultArgs<ExtArgs>
@@ -639,7 +639,7 @@ export type ScheduleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   bus_id?: boolean
   route_id?: boolean
   date?: boolean
-  times?: boolean
+  time?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   bus?: boolean | Prisma.BusDefaultArgs<ExtArgs>
@@ -651,7 +651,7 @@ export type ScheduleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   bus_id?: boolean
   route_id?: boolean
   date?: boolean
-  times?: boolean
+  time?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   bus?: boolean | Prisma.BusDefaultArgs<ExtArgs>
@@ -663,12 +663,12 @@ export type ScheduleSelectScalar = {
   bus_id?: boolean
   route_id?: boolean
   date?: boolean
-  times?: boolean
+  time?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ScheduleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "bus_id" | "route_id" | "date" | "times" | "createdAt" | "updatedAt", ExtArgs["result"]["schedule"]>
+export type ScheduleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "bus_id" | "route_id" | "date" | "time" | "createdAt" | "updatedAt", ExtArgs["result"]["schedule"]>
 export type ScheduleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bus?: boolean | Prisma.BusDefaultArgs<ExtArgs>
   route?: boolean | Prisma.RouteDefaultArgs<ExtArgs>
@@ -693,7 +693,7 @@ export type $SchedulePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     bus_id: string
     route_id: string
     date: Date
-    times: Date
+    time: string
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["schedule"]>
@@ -1125,7 +1125,7 @@ export interface ScheduleFieldRefs {
   readonly bus_id: Prisma.FieldRef<"Schedule", 'String'>
   readonly route_id: Prisma.FieldRef<"Schedule", 'String'>
   readonly date: Prisma.FieldRef<"Schedule", 'DateTime'>
-  readonly times: Prisma.FieldRef<"Schedule", 'DateTime'>
+  readonly time: Prisma.FieldRef<"Schedule", 'String'>
   readonly createdAt: Prisma.FieldRef<"Schedule", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Schedule", 'DateTime'>
 }

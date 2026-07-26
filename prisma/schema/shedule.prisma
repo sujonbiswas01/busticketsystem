@@ -2,9 +2,9 @@ model Schedule {
   id        String   @id @default(uuid())
   bus_id    String
   route_id  String
-  date      DateTime @db.Date
-  times     DateTime @db.Time
-  createdAt DateTime @db.Date
+   date            DateTime
+   time         String
+  createdAt DateTime @db.Date @default(now())
   updatedAt DateTime @updatedAt @db.Date
     bus       Bus      @relation(fields: [bus_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
  route     Route    @relation(fields: [route_id], references: [id], onDelete: Cascade, onUpdate: Cascade)

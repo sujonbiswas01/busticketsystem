@@ -227,7 +227,7 @@ export const ScheduleScalarFieldEnum = {
   bus_id: 'bus_id',
   route_id: 'route_id',
   date: 'date',
-  times: 'times',
+  time: 'time',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
