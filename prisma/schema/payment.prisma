@@ -2,7 +2,7 @@ model Payment {
   id String @id @default(uuid())
   booking_id     String @unique
   transaction_id String
-  amount         BigInt
+  amount         Int
   payment_status PaymentStatus @default(PENDING)
   created_at     DateTime      @default(now())
   user_id        String

@@ -602,6 +602,14 @@ export type PaymentUncheckedUpdateOneWithoutBusNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PaymentUpdateToOneWithWhereWithoutBusInput, Prisma.PaymentUpdateWithoutBusInput>, Prisma.PaymentUncheckedUpdateWithoutBusInput>
 }
 
+export type BigIntFieldUpdateOperationsInput = {
+  set?: bigint | number
+  increment?: bigint | number
+  decrement?: bigint | number
+  multiply?: bigint | number
+  divide?: bigint | number
+}
+
 export type PaymentCreateWithoutUserInput = {
   id?: string
   transaction_id: string

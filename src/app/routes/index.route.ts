@@ -5,6 +5,7 @@ import { BusRouters } from "../modules/bus/bus.route";
 import { RouteRouters } from "../modules/route/route.route";
 import { SeatRouters } from "../modules/seat/seat.route";
 import { ScheduleRouters } from "../modules/shedule/shedule.route";
+import { BookingRouters } from "../modules/booking/booking.route";
 
 const router = Router()
 router.use("/v1/auth",AuthRouters)
@@ -13,5 +14,6 @@ router.use("/v1/bus", BusRouters);
 router.use("/v1/route", RouteRouters);
 router.use("/v1/seat", SeatRouters);
 router.use("/v1/schedule", ScheduleRouters);
+router.use("/v1/booking", BookingRouters);
 
 export const IndexRouter=router

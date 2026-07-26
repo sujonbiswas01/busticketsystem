@@ -1,7 +1,7 @@
 model Seat {
   id String @id @default(uuid())
   registration_Number      String
-  seat_number String
+  seat_number String       @unique
   user_id     String
   status      SeatStatus @default(AVAILABLE)
   bus         Bus        @relation(fields: [registration_Number], references: [registrationNumber], onDelete: Cascade, onUpdate: Cascade)

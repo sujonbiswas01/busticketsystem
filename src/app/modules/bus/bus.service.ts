@@ -77,6 +77,7 @@ const getSingleBus = async (id: string) => {
       driver: true,
       route: true,
       seats: true,
+      schedules: true,
     },
   });
 

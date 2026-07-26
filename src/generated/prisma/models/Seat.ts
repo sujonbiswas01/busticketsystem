@@ -200,17 +200,17 @@ export type SeatOrderByWithRelationInput = {
 
 export type SeatWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  seat_number?: string
   AND?: Prisma.SeatWhereInput | Prisma.SeatWhereInput[]
   OR?: Prisma.SeatWhereInput[]
   NOT?: Prisma.SeatWhereInput | Prisma.SeatWhereInput[]
   registration_Number?: Prisma.StringFilter<"Seat"> | string
-  seat_number?: Prisma.StringFilter<"Seat"> | string
   user_id?: Prisma.StringFilter<"Seat"> | string
   status?: Prisma.EnumSeatStatusFilter<"Seat"> | $Enums.SeatStatus
   bus?: Prisma.XOR<Prisma.BusScalarRelationFilter, Prisma.BusWhereInput>
   user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   booking?: Prisma.XOR<Prisma.BookingNullableScalarRelationFilter, Prisma.BookingWhereInput> | null
-}, "id">
+}, "id" | "seat_number">
 
 export type SeatOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
