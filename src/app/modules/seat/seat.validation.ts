@@ -3,7 +3,6 @@ import { z } from "zod";
 export const createSeatSchema = z.object({
   registration_Number: z.string().min(1, "Bus registration number is required"),
   seat_number: z.string().min(1, "Seat number is required"),
-  user_id: z.string().uuid().optional(),
   status: z.enum(["AVAILABLE", "BOOKED", "BLOCKED"]).default("AVAILABLE"),
 });
 
