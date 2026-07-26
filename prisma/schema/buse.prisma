@@ -5,12 +5,12 @@ model Bus {
   busName            String    @map("bus_name") @db.VarChar(255)
   busNumber          String    @map("bus_number") @db.VarChar(100)
   busType            BusType   @map("bus_type_")
-  totalSeats         BigInt    @map("total_seats")
+  totalSeats         Int    @map("total_seats")
   registrationNumber String    @map("registration_number") @db.VarChar(100)
   status             BusStatus @default(ACTIVE)
   createdAt          DateTime  @default(now()) @map("created_at")
-  driverId           String?   @map("Driver_id")
-  driver           Driver?   @relation(fields: [driverId], references: [id])
+  licenseNumber           String?   @map("licenseNumber")
+  driver           Driver?   @relation(fields: [licenseNumber], references: [licenseNumber], onDelete: Cascade, onUpdate: Cascade)
   seats            Seat[]
   schedules        Schedule[]
   routeId      String

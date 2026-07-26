@@ -31,7 +31,7 @@ export type BusAvgAggregateOutputType = {
 }
 
 export type BusSumAggregateOutputType = {
-  totalSeats: bigint | null
+  totalSeats: number | null
 }
 
 export type BusMinAggregateOutputType = {
@@ -39,11 +39,11 @@ export type BusMinAggregateOutputType = {
   busName: string | null
   busNumber: string | null
   busType: $Enums.BusType | null
-  totalSeats: bigint | null
+  totalSeats: number | null
   registrationNumber: string | null
   status: $Enums.BusStatus | null
   createdAt: Date | null
-  driverId: string | null
+  licenseNumber: string | null
   routeId: string | null
 }
 
@@ -52,11 +52,11 @@ export type BusMaxAggregateOutputType = {
   busName: string | null
   busNumber: string | null
   busType: $Enums.BusType | null
-  totalSeats: bigint | null
+  totalSeats: number | null
   registrationNumber: string | null
   status: $Enums.BusStatus | null
   createdAt: Date | null
-  driverId: string | null
+  licenseNumber: string | null
   routeId: string | null
 }
 
@@ -69,7 +69,7 @@ export type BusCountAggregateOutputType = {
   registrationNumber: number
   status: number
   createdAt: number
-  driverId: number
+  licenseNumber: number
   routeId: number
   _all: number
 }
@@ -92,7 +92,7 @@ export type BusMinAggregateInputType = {
   registrationNumber?: true
   status?: true
   createdAt?: true
-  driverId?: true
+  licenseNumber?: true
   routeId?: true
 }
 
@@ -105,7 +105,7 @@ export type BusMaxAggregateInputType = {
   registrationNumber?: true
   status?: true
   createdAt?: true
-  driverId?: true
+  licenseNumber?: true
   routeId?: true
 }
 
@@ -118,7 +118,7 @@ export type BusCountAggregateInputType = {
   registrationNumber?: true
   status?: true
   createdAt?: true
-  driverId?: true
+  licenseNumber?: true
   routeId?: true
   _all?: true
 }
@@ -214,11 +214,11 @@ export type BusGroupByOutputType = {
   busName: string
   busNumber: string
   busType: $Enums.BusType
-  totalSeats: bigint
+  totalSeats: number
   registrationNumber: string
   status: $Enums.BusStatus
   createdAt: Date
-  driverId: string | null
+  licenseNumber: string | null
   routeId: string
   _count: BusCountAggregateOutputType | null
   _avg: BusAvgAggregateOutputType | null
@@ -250,11 +250,11 @@ export type BusWhereInput = {
   busName?: Prisma.StringFilter<"Bus"> | string
   busNumber?: Prisma.StringFilter<"Bus"> | string
   busType?: Prisma.EnumBusTypeFilter<"Bus"> | $Enums.BusType
-  totalSeats?: Prisma.BigIntFilter<"Bus"> | bigint | number
+  totalSeats?: Prisma.IntFilter<"Bus"> | number
   registrationNumber?: Prisma.StringFilter<"Bus"> | string
   status?: Prisma.EnumBusStatusFilter<"Bus"> | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFilter<"Bus"> | Date | string
-  driverId?: Prisma.StringNullableFilter<"Bus"> | string | null
+  licenseNumber?: Prisma.StringNullableFilter<"Bus"> | string | null
   routeId?: Prisma.StringFilter<"Bus"> | string
   driver?: Prisma.XOR<Prisma.DriverNullableScalarRelationFilter, Prisma.DriverWhereInput> | null
   seats?: Prisma.SeatListRelationFilter
@@ -272,7 +272,7 @@ export type BusOrderByWithRelationInput = {
   registrationNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  driverId?: Prisma.SortOrderInput | Prisma.SortOrder
+  licenseNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   routeId?: Prisma.SortOrder
   driver?: Prisma.DriverOrderByWithRelationInput
   seats?: Prisma.SeatOrderByRelationAggregateInput
@@ -289,11 +289,11 @@ export type BusWhereUniqueInput = Prisma.AtLeast<{
   busName?: Prisma.StringFilter<"Bus"> | string
   busNumber?: Prisma.StringFilter<"Bus"> | string
   busType?: Prisma.EnumBusTypeFilter<"Bus"> | $Enums.BusType
-  totalSeats?: Prisma.BigIntFilter<"Bus"> | bigint | number
+  totalSeats?: Prisma.IntFilter<"Bus"> | number
   registrationNumber?: Prisma.StringFilter<"Bus"> | string
   status?: Prisma.EnumBusStatusFilter<"Bus"> | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFilter<"Bus"> | Date | string
-  driverId?: Prisma.StringNullableFilter<"Bus"> | string | null
+  licenseNumber?: Prisma.StringNullableFilter<"Bus"> | string | null
   routeId?: Prisma.StringFilter<"Bus"> | string
   driver?: Prisma.XOR<Prisma.DriverNullableScalarRelationFilter, Prisma.DriverWhereInput> | null
   seats?: Prisma.SeatListRelationFilter
@@ -311,7 +311,7 @@ export type BusOrderByWithAggregationInput = {
   registrationNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  driverId?: Prisma.SortOrderInput | Prisma.SortOrder
+  licenseNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   routeId?: Prisma.SortOrder
   _count?: Prisma.BusCountOrderByAggregateInput
   _avg?: Prisma.BusAvgOrderByAggregateInput
@@ -328,11 +328,11 @@ export type BusScalarWhereWithAggregatesInput = {
   busName?: Prisma.StringWithAggregatesFilter<"Bus"> | string
   busNumber?: Prisma.StringWithAggregatesFilter<"Bus"> | string
   busType?: Prisma.EnumBusTypeWithAggregatesFilter<"Bus"> | $Enums.BusType
-  totalSeats?: Prisma.BigIntWithAggregatesFilter<"Bus"> | bigint | number
+  totalSeats?: Prisma.IntWithAggregatesFilter<"Bus"> | number
   registrationNumber?: Prisma.StringWithAggregatesFilter<"Bus"> | string
   status?: Prisma.EnumBusStatusWithAggregatesFilter<"Bus"> | $Enums.BusStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Bus"> | Date | string
-  driverId?: Prisma.StringNullableWithAggregatesFilter<"Bus"> | string | null
+  licenseNumber?: Prisma.StringNullableWithAggregatesFilter<"Bus"> | string | null
   routeId?: Prisma.StringWithAggregatesFilter<"Bus"> | string
 }
 
@@ -341,7 +341,7 @@ export type BusCreateInput = {
   busName: string
   busNumber: string
   busType: $Enums.BusType
-  totalSeats: bigint | number
+  totalSeats: number
   registrationNumber: string
   status?: $Enums.BusStatus
   createdAt?: Date | string
@@ -357,11 +357,11 @@ export type BusUncheckedCreateInput = {
   busName: string
   busNumber: string
   busType: $Enums.BusType
-  totalSeats: bigint | number
+  totalSeats: number
   registrationNumber: string
   status?: $Enums.BusStatus
   createdAt?: Date | string
-  driverId?: string | null
+  licenseNumber?: string | null
   routeId: string
   seats?: Prisma.SeatUncheckedCreateNestedManyWithoutBusInput
   schedules?: Prisma.ScheduleUncheckedCreateNestedManyWithoutBusInput
@@ -373,7 +373,7 @@ export type BusUpdateInput = {
   busName?: Prisma.StringFieldUpdateOperationsInput | string
   busNumber?: Prisma.StringFieldUpdateOperationsInput | string
   busType?: Prisma.EnumBusTypeFieldUpdateOperationsInput | $Enums.BusType
-  totalSeats?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  totalSeats?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumBusStatusFieldUpdateOperationsInput | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -389,11 +389,11 @@ export type BusUncheckedUpdateInput = {
   busName?: Prisma.StringFieldUpdateOperationsInput | string
   busNumber?: Prisma.StringFieldUpdateOperationsInput | string
   busType?: Prisma.EnumBusTypeFieldUpdateOperationsInput | $Enums.BusType
-  totalSeats?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  totalSeats?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumBusStatusFieldUpdateOperationsInput | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  driverId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenseNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
   seats?: Prisma.SeatUncheckedUpdateManyWithoutBusNestedInput
   schedules?: Prisma.ScheduleUncheckedUpdateManyWithoutBusNestedInput
@@ -405,11 +405,11 @@ export type BusCreateManyInput = {
   busName: string
   busNumber: string
   busType: $Enums.BusType
-  totalSeats: bigint | number
+  totalSeats: number
   registrationNumber: string
   status?: $Enums.BusStatus
   createdAt?: Date | string
-  driverId?: string | null
+  licenseNumber?: string | null
   routeId: string
 }
 
@@ -418,7 +418,7 @@ export type BusUpdateManyMutationInput = {
   busName?: Prisma.StringFieldUpdateOperationsInput | string
   busNumber?: Prisma.StringFieldUpdateOperationsInput | string
   busType?: Prisma.EnumBusTypeFieldUpdateOperationsInput | $Enums.BusType
-  totalSeats?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  totalSeats?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumBusStatusFieldUpdateOperationsInput | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -429,11 +429,11 @@ export type BusUncheckedUpdateManyInput = {
   busName?: Prisma.StringFieldUpdateOperationsInput | string
   busNumber?: Prisma.StringFieldUpdateOperationsInput | string
   busType?: Prisma.EnumBusTypeFieldUpdateOperationsInput | $Enums.BusType
-  totalSeats?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  totalSeats?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumBusStatusFieldUpdateOperationsInput | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  driverId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenseNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -446,7 +446,7 @@ export type BusCountOrderByAggregateInput = {
   registrationNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  driverId?: Prisma.SortOrder
+  licenseNumber?: Prisma.SortOrder
   routeId?: Prisma.SortOrder
 }
 
@@ -463,7 +463,7 @@ export type BusMaxOrderByAggregateInput = {
   registrationNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  driverId?: Prisma.SortOrder
+  licenseNumber?: Prisma.SortOrder
   routeId?: Prisma.SortOrder
 }
 
@@ -476,7 +476,7 @@ export type BusMinOrderByAggregateInput = {
   registrationNumber?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  driverId?: Prisma.SortOrder
+  licenseNumber?: Prisma.SortOrder
   routeId?: Prisma.SortOrder
 }
 
@@ -501,6 +501,14 @@ export type BusScalarRelationFilter = {
 
 export type EnumBusTypeFieldUpdateOperationsInput = {
   set?: $Enums.BusType
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type EnumBusStatusFieldUpdateOperationsInput = {
@@ -638,7 +646,7 @@ export type BusCreateWithoutDriverInput = {
   busName: string
   busNumber: string
   busType: $Enums.BusType
-  totalSeats: bigint | number
+  totalSeats: number
   registrationNumber: string
   status?: $Enums.BusStatus
   createdAt?: Date | string
@@ -653,7 +661,7 @@ export type BusUncheckedCreateWithoutDriverInput = {
   busName: string
   busNumber: string
   busType: $Enums.BusType
-  totalSeats: bigint | number
+  totalSeats: number
   registrationNumber: string
   status?: $Enums.BusStatus
   createdAt?: Date | string
@@ -697,11 +705,11 @@ export type BusScalarWhereInput = {
   busName?: Prisma.StringFilter<"Bus"> | string
   busNumber?: Prisma.StringFilter<"Bus"> | string
   busType?: Prisma.EnumBusTypeFilter<"Bus"> | $Enums.BusType
-  totalSeats?: Prisma.BigIntFilter<"Bus"> | bigint | number
+  totalSeats?: Prisma.IntFilter<"Bus"> | number
   registrationNumber?: Prisma.StringFilter<"Bus"> | string
   status?: Prisma.EnumBusStatusFilter<"Bus"> | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFilter<"Bus"> | Date | string
-  driverId?: Prisma.StringNullableFilter<"Bus"> | string | null
+  licenseNumber?: Prisma.StringNullableFilter<"Bus"> | string | null
   routeId?: Prisma.StringFilter<"Bus"> | string
 }
 
@@ -710,7 +718,7 @@ export type BusCreateWithoutPaymentInput = {
   busName: string
   busNumber: string
   busType: $Enums.BusType
-  totalSeats: bigint | number
+  totalSeats: number
   registrationNumber: string
   status?: $Enums.BusStatus
   createdAt?: Date | string
@@ -725,11 +733,11 @@ export type BusUncheckedCreateWithoutPaymentInput = {
   busName: string
   busNumber: string
   busType: $Enums.BusType
-  totalSeats: bigint | number
+  totalSeats: number
   registrationNumber: string
   status?: $Enums.BusStatus
   createdAt?: Date | string
-  driverId?: string | null
+  licenseNumber?: string | null
   routeId: string
   seats?: Prisma.SeatUncheckedCreateNestedManyWithoutBusInput
   schedules?: Prisma.ScheduleUncheckedCreateNestedManyWithoutBusInput
@@ -756,7 +764,7 @@ export type BusUpdateWithoutPaymentInput = {
   busName?: Prisma.StringFieldUpdateOperationsInput | string
   busNumber?: Prisma.StringFieldUpdateOperationsInput | string
   busType?: Prisma.EnumBusTypeFieldUpdateOperationsInput | $Enums.BusType
-  totalSeats?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  totalSeats?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumBusStatusFieldUpdateOperationsInput | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -771,11 +779,11 @@ export type BusUncheckedUpdateWithoutPaymentInput = {
   busName?: Prisma.StringFieldUpdateOperationsInput | string
   busNumber?: Prisma.StringFieldUpdateOperationsInput | string
   busType?: Prisma.EnumBusTypeFieldUpdateOperationsInput | $Enums.BusType
-  totalSeats?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  totalSeats?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumBusStatusFieldUpdateOperationsInput | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  driverId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenseNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
   seats?: Prisma.SeatUncheckedUpdateManyWithoutBusNestedInput
   schedules?: Prisma.ScheduleUncheckedUpdateManyWithoutBusNestedInput
@@ -786,7 +794,7 @@ export type BusCreateWithoutRouteInput = {
   busName: string
   busNumber: string
   busType: $Enums.BusType
-  totalSeats: bigint | number
+  totalSeats: number
   registrationNumber: string
   status?: $Enums.BusStatus
   createdAt?: Date | string
@@ -801,11 +809,11 @@ export type BusUncheckedCreateWithoutRouteInput = {
   busName: string
   busNumber: string
   busType: $Enums.BusType
-  totalSeats: bigint | number
+  totalSeats: number
   registrationNumber: string
   status?: $Enums.BusStatus
   createdAt?: Date | string
-  driverId?: string | null
+  licenseNumber?: string | null
   seats?: Prisma.SeatUncheckedCreateNestedManyWithoutBusInput
   schedules?: Prisma.ScheduleUncheckedCreateNestedManyWithoutBusInput
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutBusInput
@@ -842,7 +850,7 @@ export type BusCreateWithoutSeatsInput = {
   busName: string
   busNumber: string
   busType: $Enums.BusType
-  totalSeats: bigint | number
+  totalSeats: number
   registrationNumber: string
   status?: $Enums.BusStatus
   createdAt?: Date | string
@@ -857,11 +865,11 @@ export type BusUncheckedCreateWithoutSeatsInput = {
   busName: string
   busNumber: string
   busType: $Enums.BusType
-  totalSeats: bigint | number
+  totalSeats: number
   registrationNumber: string
   status?: $Enums.BusStatus
   createdAt?: Date | string
-  driverId?: string | null
+  licenseNumber?: string | null
   routeId: string
   schedules?: Prisma.ScheduleUncheckedCreateNestedManyWithoutBusInput
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutBusInput
@@ -888,7 +896,7 @@ export type BusUpdateWithoutSeatsInput = {
   busName?: Prisma.StringFieldUpdateOperationsInput | string
   busNumber?: Prisma.StringFieldUpdateOperationsInput | string
   busType?: Prisma.EnumBusTypeFieldUpdateOperationsInput | $Enums.BusType
-  totalSeats?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  totalSeats?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumBusStatusFieldUpdateOperationsInput | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -903,11 +911,11 @@ export type BusUncheckedUpdateWithoutSeatsInput = {
   busName?: Prisma.StringFieldUpdateOperationsInput | string
   busNumber?: Prisma.StringFieldUpdateOperationsInput | string
   busType?: Prisma.EnumBusTypeFieldUpdateOperationsInput | $Enums.BusType
-  totalSeats?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  totalSeats?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumBusStatusFieldUpdateOperationsInput | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  driverId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenseNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
   schedules?: Prisma.ScheduleUncheckedUpdateManyWithoutBusNestedInput
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutBusNestedInput
@@ -918,7 +926,7 @@ export type BusCreateWithoutSchedulesInput = {
   busName: string
   busNumber: string
   busType: $Enums.BusType
-  totalSeats: bigint | number
+  totalSeats: number
   registrationNumber: string
   status?: $Enums.BusStatus
   createdAt?: Date | string
@@ -933,11 +941,11 @@ export type BusUncheckedCreateWithoutSchedulesInput = {
   busName: string
   busNumber: string
   busType: $Enums.BusType
-  totalSeats: bigint | number
+  totalSeats: number
   registrationNumber: string
   status?: $Enums.BusStatus
   createdAt?: Date | string
-  driverId?: string | null
+  licenseNumber?: string | null
   routeId: string
   seats?: Prisma.SeatUncheckedCreateNestedManyWithoutBusInput
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutBusInput
@@ -964,7 +972,7 @@ export type BusUpdateWithoutSchedulesInput = {
   busName?: Prisma.StringFieldUpdateOperationsInput | string
   busNumber?: Prisma.StringFieldUpdateOperationsInput | string
   busType?: Prisma.EnumBusTypeFieldUpdateOperationsInput | $Enums.BusType
-  totalSeats?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  totalSeats?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumBusStatusFieldUpdateOperationsInput | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -979,11 +987,11 @@ export type BusUncheckedUpdateWithoutSchedulesInput = {
   busName?: Prisma.StringFieldUpdateOperationsInput | string
   busNumber?: Prisma.StringFieldUpdateOperationsInput | string
   busType?: Prisma.EnumBusTypeFieldUpdateOperationsInput | $Enums.BusType
-  totalSeats?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  totalSeats?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumBusStatusFieldUpdateOperationsInput | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  driverId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenseNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   routeId?: Prisma.StringFieldUpdateOperationsInput | string
   seats?: Prisma.SeatUncheckedUpdateManyWithoutBusNestedInput
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutBusNestedInput
@@ -994,7 +1002,7 @@ export type BusCreateManyDriverInput = {
   busName: string
   busNumber: string
   busType: $Enums.BusType
-  totalSeats: bigint | number
+  totalSeats: number
   registrationNumber: string
   status?: $Enums.BusStatus
   createdAt?: Date | string
@@ -1006,7 +1014,7 @@ export type BusUpdateWithoutDriverInput = {
   busName?: Prisma.StringFieldUpdateOperationsInput | string
   busNumber?: Prisma.StringFieldUpdateOperationsInput | string
   busType?: Prisma.EnumBusTypeFieldUpdateOperationsInput | $Enums.BusType
-  totalSeats?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  totalSeats?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumBusStatusFieldUpdateOperationsInput | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1021,7 +1029,7 @@ export type BusUncheckedUpdateWithoutDriverInput = {
   busName?: Prisma.StringFieldUpdateOperationsInput | string
   busNumber?: Prisma.StringFieldUpdateOperationsInput | string
   busType?: Prisma.EnumBusTypeFieldUpdateOperationsInput | $Enums.BusType
-  totalSeats?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  totalSeats?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumBusStatusFieldUpdateOperationsInput | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1036,7 +1044,7 @@ export type BusUncheckedUpdateManyWithoutDriverInput = {
   busName?: Prisma.StringFieldUpdateOperationsInput | string
   busNumber?: Prisma.StringFieldUpdateOperationsInput | string
   busType?: Prisma.EnumBusTypeFieldUpdateOperationsInput | $Enums.BusType
-  totalSeats?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  totalSeats?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumBusStatusFieldUpdateOperationsInput | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1048,11 +1056,11 @@ export type BusCreateManyRouteInput = {
   busName: string
   busNumber: string
   busType: $Enums.BusType
-  totalSeats: bigint | number
+  totalSeats: number
   registrationNumber: string
   status?: $Enums.BusStatus
   createdAt?: Date | string
-  driverId?: string | null
+  licenseNumber?: string | null
 }
 
 export type BusUpdateWithoutRouteInput = {
@@ -1060,7 +1068,7 @@ export type BusUpdateWithoutRouteInput = {
   busName?: Prisma.StringFieldUpdateOperationsInput | string
   busNumber?: Prisma.StringFieldUpdateOperationsInput | string
   busType?: Prisma.EnumBusTypeFieldUpdateOperationsInput | $Enums.BusType
-  totalSeats?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  totalSeats?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumBusStatusFieldUpdateOperationsInput | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1075,11 +1083,11 @@ export type BusUncheckedUpdateWithoutRouteInput = {
   busName?: Prisma.StringFieldUpdateOperationsInput | string
   busNumber?: Prisma.StringFieldUpdateOperationsInput | string
   busType?: Prisma.EnumBusTypeFieldUpdateOperationsInput | $Enums.BusType
-  totalSeats?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  totalSeats?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumBusStatusFieldUpdateOperationsInput | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  driverId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenseNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   seats?: Prisma.SeatUncheckedUpdateManyWithoutBusNestedInput
   schedules?: Prisma.ScheduleUncheckedUpdateManyWithoutBusNestedInput
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutBusNestedInput
@@ -1090,11 +1098,11 @@ export type BusUncheckedUpdateManyWithoutRouteInput = {
   busName?: Prisma.StringFieldUpdateOperationsInput | string
   busNumber?: Prisma.StringFieldUpdateOperationsInput | string
   busType?: Prisma.EnumBusTypeFieldUpdateOperationsInput | $Enums.BusType
-  totalSeats?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  totalSeats?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumBusStatusFieldUpdateOperationsInput | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  driverId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  licenseNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -1146,7 +1154,7 @@ export type BusSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
   registrationNumber?: boolean
   status?: boolean
   createdAt?: boolean
-  driverId?: boolean
+  licenseNumber?: boolean
   routeId?: boolean
   driver?: boolean | Prisma.Bus$driverArgs<ExtArgs>
   seats?: boolean | Prisma.Bus$seatsArgs<ExtArgs>
@@ -1165,7 +1173,7 @@ export type BusSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extension
   registrationNumber?: boolean
   status?: boolean
   createdAt?: boolean
-  driverId?: boolean
+  licenseNumber?: boolean
   routeId?: boolean
   driver?: boolean | Prisma.Bus$driverArgs<ExtArgs>
   route?: boolean | Prisma.RouteDefaultArgs<ExtArgs>
@@ -1180,7 +1188,7 @@ export type BusSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extension
   registrationNumber?: boolean
   status?: boolean
   createdAt?: boolean
-  driverId?: boolean
+  licenseNumber?: boolean
   routeId?: boolean
   driver?: boolean | Prisma.Bus$driverArgs<ExtArgs>
   route?: boolean | Prisma.RouteDefaultArgs<ExtArgs>
@@ -1195,11 +1203,11 @@ export type BusSelectScalar = {
   registrationNumber?: boolean
   status?: boolean
   createdAt?: boolean
-  driverId?: boolean
+  licenseNumber?: boolean
   routeId?: boolean
 }
 
-export type BusOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "busName" | "busNumber" | "busType" | "totalSeats" | "registrationNumber" | "status" | "createdAt" | "driverId" | "routeId", ExtArgs["result"]["bus"]>
+export type BusOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "busName" | "busNumber" | "busType" | "totalSeats" | "registrationNumber" | "status" | "createdAt" | "licenseNumber" | "routeId", ExtArgs["result"]["bus"]>
 export type BusInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   driver?: boolean | Prisma.Bus$driverArgs<ExtArgs>
   seats?: boolean | Prisma.Bus$seatsArgs<ExtArgs>
@@ -1231,11 +1239,11 @@ export type $BusPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
     busName: string
     busNumber: string
     busType: $Enums.BusType
-    totalSeats: bigint
+    totalSeats: number
     registrationNumber: string
     status: $Enums.BusStatus
     createdAt: Date
-    driverId: string | null
+    licenseNumber: string | null
     routeId: string
   }, ExtArgs["result"]["bus"]>
   composites: {}
@@ -1669,11 +1677,11 @@ export interface BusFieldRefs {
   readonly busName: Prisma.FieldRef<"Bus", 'String'>
   readonly busNumber: Prisma.FieldRef<"Bus", 'String'>
   readonly busType: Prisma.FieldRef<"Bus", 'BusType'>
-  readonly totalSeats: Prisma.FieldRef<"Bus", 'BigInt'>
+  readonly totalSeats: Prisma.FieldRef<"Bus", 'Int'>
   readonly registrationNumber: Prisma.FieldRef<"Bus", 'String'>
   readonly status: Prisma.FieldRef<"Bus", 'BusStatus'>
   readonly createdAt: Prisma.FieldRef<"Bus", 'DateTime'>
-  readonly driverId: Prisma.FieldRef<"Bus", 'String'>
+  readonly licenseNumber: Prisma.FieldRef<"Bus", 'String'>
   readonly routeId: Prisma.FieldRef<"Bus", 'String'>
 }
     

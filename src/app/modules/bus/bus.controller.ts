@@ -6,7 +6,9 @@ import { BusService } from "./bus.service";
 
 const createBus = catchAsync(async (req: Request, res: Response) => {
   const payload = { ...req.body };
-  const result = await BusService.createBus(payload);
+  const { from, to } = req.query;
+
+  const result = await BusService.createBus(payload, from as string, to as string);
 
   sendResponse(res, {
     httpStatusCode: status.CREATED,
@@ -39,19 +41,6 @@ const getSingleBus = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-const updateBus = catchAsync(async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const payload = { ...req.body };
-  const result = await BusService.updateBus(id as string, payload);
-
-  sendResponse(res, {
-    httpStatusCode: status.OK,
-    success: true,
-    message: "Bus updated successfully",
-    data: result,
-  });
-});
-
 const deleteBus = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await BusService.deleteBus(id as string);
@@ -68,6 +57,6 @@ export const busController = {
   createBus,
   getAllBuses,
   getSingleBus,
-  updateBus,
+  
   deleteBus,
 };

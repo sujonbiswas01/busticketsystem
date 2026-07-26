@@ -26,13 +26,6 @@ router.get(
   busController.getSingleBus
 );
 
-router.patch(
-  "/:id",
-  auth([Role.ADMIN, Role.MANAGER]),
-  validateRequest(updateBusSchema),
-  busController.updateBus
-);
-
 router.delete(
   "/:id",
   auth([Role.ADMIN]),

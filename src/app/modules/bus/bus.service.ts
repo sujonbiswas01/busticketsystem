@@ -31,25 +31,28 @@ const ensureUniqueBusFields = async (
   }
 };
 
-const createBus = async (payload: BusCreateInput) => {
-  await ensureUniqueBusFields(payload.busNumber, payload.registrationNumber);
+const createBus = async (payload: BusCreateInput,from: string,to: string) => {
+  const registrationNumber = `BUS-${Date.now()}`;
+  await ensureUniqueBusFields(payload.busNumber,registrationNumber);
 
-  const routeExist = await prisma.route.findUnique({ where: { id: payload.routeId } });
+  const routeExist = await prisma.route.findFirst({ where: {from_city:from,to_city:to} });
   if (!routeExist) {
     throw new AppError(status.NOT_FOUND, "Route not found");
   }
 
-  if (payload.driverId) {
-    const driverExist = await prisma.driver.findUnique({ where: { id: payload.driverId } });
-    if (!driverExist) {
+  const driverExist = await prisma.driver.findUnique({ where: { licenseNumber: payload.licenseNumber } });
+
+  if (!driverExist) {
       throw new AppError(status.NOT_FOUND, "Driver not found");
     }
-  }
 
   const result = await prisma.bus.create({
     data: {
       ...payload,
-      totalSeats: BigInt(payload.totalSeats),
+      totalSeats: Number(payload.totalSeats),
+      routeId: routeExist.id,
+      licenseNumber:driverExist.licenseNumber,
+      registrationNumber: registrationNumber,
     },
   });
 
@@ -83,40 +86,6 @@ const getSingleBus = async (id: string) => {
 
   return result;
 };
-
-const updateBus = async (id: string, payload: BusUpdateInput) => {
-  const busExist = await prisma.bus.findUnique({ where: { id } });
-  if (!busExist) {
-    throw new AppError(status.NOT_FOUND, "Bus not found");
-  }
-
-  await ensureUniqueBusFields(payload.busNumber, payload.registrationNumber, id);
-
-  if (payload.routeId) {
-    const routeExist = await prisma.route.findUnique({ where: { id: payload.routeId } });
-    if (!routeExist) {
-      throw new AppError(status.NOT_FOUND, "Route not found");
-    }
-  }
-
-  if (payload.driverId) {
-    const driverExist = await prisma.driver.findUnique({ where: { id: payload.driverId } });
-    if (!driverExist) {
-      throw new AppError(status.NOT_FOUND, "Driver not found");
-    }
-  }
-
-  const result = await prisma.bus.update({
-    where: { id },
-    data: {
-      ...payload,
-      ...(payload.totalSeats !== undefined ? { totalSeats: BigInt(payload.totalSeats) } : {}),
-    },
-  });
-
-  return result;
-};
-
 const deleteBus = async (id: string) => {
   const busExist = await prisma.bus.findUnique({ where: { id } });
   if (!busExist) {
@@ -134,6 +103,5 @@ export const BusService = {
   createBus,
   getAllBuses,
   getSingleBus,
-  updateBus,
   deleteBus,
 };

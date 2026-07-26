@@ -163,7 +163,7 @@ export const BusScalarFieldEnum = {
   registrationNumber: 'registrationNumber',
   status: 'status',
   createdAt: 'createdAt',
-  driverId: 'driverId',
+  licenseNumber: 'licenseNumber',
   routeId: 'routeId'
 } as const
 
