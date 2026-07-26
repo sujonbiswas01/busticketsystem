@@ -13,12 +13,7 @@ const createBooking = async (user: IRequestUser, bus_id: string, seatNumber: str
     throw new AppError(status.NOT_FOUND, "User not found");
   }
 
-  //  await prisma.booking.deleteMany({
-  //   where:{
-  //     payment_status:"PENDING",
-  //     booking_status:"PENDING",
-  //   }
-  // })
+ 
 
   const busExist = await prisma.bus.findUnique({
     where: { id: bus_id },
@@ -43,7 +38,6 @@ const createBooking = async (user: IRequestUser, bus_id: string, seatNumber: str
     },
   });
 
-  console.log(seatExist,"seat")
 
   if(!seatExist){
     throw new AppError(status.NOT_FOUND, "Selected seats not found");
@@ -130,7 +124,7 @@ const createBooking = async (user: IRequestUser, bus_id: string, seatNumber: str
       cancel_url: `${envVars.FRONTEND_URL}/payment/${busExist.id}?bookingId=${resultbooking.id}&paymentId=${paymentData.id}`,
     });
 
-  if(session.payment_status === "paid"){
+     
       const updated = await tx.seat.updateMany({
       where: {
         id: {
@@ -145,7 +139,9 @@ const createBooking = async (user: IRequestUser, bus_id: string, seatNumber: str
     if (updated.count !== seatExist.length) {
   throw new AppError(409, "Some seats were booked by another user");
 }
-  }
+  
+
+
 
     return {
       resultbooking,

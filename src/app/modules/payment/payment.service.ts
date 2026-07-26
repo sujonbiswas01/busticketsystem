@@ -69,6 +69,7 @@ const handlerStripeWebhookEvent = async (event: Stripe.Event) => {
             id: bookingId,
           },
           data: {
+            booking_status:"CONFIRMED",
             payment_status: PaymentStatus.PAID,
           },
         });
