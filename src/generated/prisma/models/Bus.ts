@@ -283,6 +283,7 @@ export type BusOrderByWithRelationInput = {
 
 export type BusWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  registrationNumber?: string
   AND?: Prisma.BusWhereInput | Prisma.BusWhereInput[]
   OR?: Prisma.BusWhereInput[]
   NOT?: Prisma.BusWhereInput | Prisma.BusWhereInput[]
@@ -290,7 +291,6 @@ export type BusWhereUniqueInput = Prisma.AtLeast<{
   busNumber?: Prisma.StringFilter<"Bus"> | string
   busType?: Prisma.EnumBusTypeFilter<"Bus"> | $Enums.BusType
   totalSeats?: Prisma.IntFilter<"Bus"> | number
-  registrationNumber?: Prisma.StringFilter<"Bus"> | string
   status?: Prisma.EnumBusStatusFilter<"Bus"> | $Enums.BusStatus
   createdAt?: Prisma.DateTimeFilter<"Bus"> | Date | string
   licenseNumber?: Prisma.StringNullableFilter<"Bus"> | string | null
@@ -300,7 +300,7 @@ export type BusWhereUniqueInput = Prisma.AtLeast<{
   schedules?: Prisma.ScheduleListRelationFilter
   route?: Prisma.XOR<Prisma.RouteScalarRelationFilter, Prisma.RouteWhereInput>
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
-}, "id">
+}, "id" | "registrationNumber">
 
 export type BusOrderByWithAggregationInput = {
   id?: Prisma.SortOrder

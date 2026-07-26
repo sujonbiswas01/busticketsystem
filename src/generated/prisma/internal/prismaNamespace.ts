@@ -1413,7 +1413,7 @@ export type RouteScalarFieldEnum = (typeof RouteScalarFieldEnum)[keyof typeof Ro
 
 export const SeatScalarFieldEnum = {
   id: 'id',
-  bus_id: 'bus_id',
+  registration_Number: 'registration_Number',
   seat_number: 'seat_number',
   user_id: 'user_id',
   status: 'status'
